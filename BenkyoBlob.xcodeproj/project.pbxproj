@@ -51,8 +51,10 @@
 		D40C711729217A0C00E49F63 /* BenkyoBlob */ = {
 			isa = PBXGroup;
 			children = (
+				D40C712829217C1000E49F63 /* Models */,
+				D40C712729217C0900E49F63 /* ViewModels */,
+				D40C712629217C0200E49F63 /* Views */,
 				D40C711829217A0C00E49F63 /* BenkyoBlobApp.swift */,
-				D40C711A29217A0C00E49F63 /* ContentView.swift */,
 				D40C711C29217A1200E49F63 /* Assets.xcassets */,
 				D40C711E29217A1200E49F63 /* Preview Content */,
 			);
@@ -65,6 +67,28 @@
 				D40C711F29217A1200E49F63 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		D40C712629217C0200E49F63 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D40C711A29217A0C00E49F63 /* ContentView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		D40C712729217C0900E49F63 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		D40C712829217C1000E49F63 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
