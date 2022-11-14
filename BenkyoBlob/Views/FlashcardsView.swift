@@ -57,12 +57,12 @@ struct CardView: View {
                                 if (!showAnswer) {
                                     Text(deck.deck[cardIndex].question)
                                         .frame(width: geo.size.width / 1.3, height: geo.size.height / 5)
-                                        .font(.custom("FFF Forward", size: 13))
+                                        .font(.custom("FFF Forward", size: geo.size.height / 45))
                                 }
                                 else {
                                     Text(deck.deck[cardIndex].answer)
                                         .frame(width: geo.size.width / 1.3, height: geo.size.height / 5)
-                                        .font(.custom("FFF Forward", size: 13))
+                                        .font(.custom("FFF Forward", size: geo.size.height / 45))
                                 }
                                 
                             }
@@ -209,7 +209,7 @@ struct FlashcardsView: View {
                                                 .frame(width: geo.size.width / 1.5, height: geo.size.height / 8)
                                             if (!renameDeckMode) {
                                                 Text(deck.name)
-                                                    .font(.custom("FFF Forward", size: 20))
+                                                    .font(.custom("FFF Forward", size: geo.size.height / 30))
                                             } else {
                                                 Text("");
                                             }
@@ -277,7 +277,7 @@ struct FieldView: View {
 
 struct FlashcardsView_Previews: PreviewProvider {
     static var previews: some View {
-        FlashcardsView(modeSelect: .constant(3))
+        FlashcardsView(modeSelect: .constant(5))
             .environmentObject(DeckModel())
     }
 }

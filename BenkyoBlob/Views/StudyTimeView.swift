@@ -36,8 +36,8 @@ class TimeManager: ObservableObject {
 
 struct StudyTimeView: View {
     @ObservedObject var TM = TimeManager()
+    @Binding var modeSelect : Int?
     var formattedString : String {
-        
         let total_seconds = TM.tenMilliseconds / 100
         let hours = total_seconds / (60 * 60)
         let minutes = total_seconds / 60
@@ -48,58 +48,70 @@ struct StudyTimeView: View {
     }
     
     var body: some View {
-        VStack {
-            
-            
-            Text(formattedString)
-                .font(.custom("FFF Forward", size: 20))
-            HStack {
-                
+        GeometryReader { geo in
+            VStack {
                 
                 Button {
-                    if TM.status == .stopped {
-                        TM.start()
-                        TM.status = .running
-                    }
-                    else {
-                        TM.stop()
-                        TM.status = .stopped
-                    }
-                } label: {
-                    if (TM.status == .stopped) {
-                        Image("play-button-lrg")
-                            .resizable()
-                            .frame(width:30, height:30)
-                    }
-                    else {
-                        Image("pause-button-lrg")
-                            .resizable()
-                            .frame(width:30, height:30)
-                    }
-                    
-                    
-                    
-                }
-                Button {
-                    TM.tenMilliseconds = 0
-                } label: {
-                    Text("Reset")
-                        .font(.custom("FFF Forward", size: 20))
-                }
-            }
-            Button {
+                 modeSelect = nil
+                 } label: {
+                 Image("back-button-lrg")
+                 .resizable()
+                 .frame(width: geo.size.width / 10, height: geo.size.width / 10)
+                 .padding()
+                 }
                 
-            } label: {
-                Image("done-lrg")
-                    .resizable()
-                    .frame(width: 40, height: 40)
-            }
-        }.navigationBarHidden(true)
+                Text(formattedString)
+                    .font(.custom("FFF Forward", size: geo.size.width / 15))
+                    .offset(x: geo.size.width / 3.25)
+                HStack {
+                    Button {
+                        if TM.status == .stopped {
+                            TM.start()
+                            TM.status = .running
+                        }
+                        else {
+                            TM.stop()
+                            TM.status = .stopped
+                        }
+                    } label: {
+                        if (TM.status == .stopped) {
+                            Image("play-button-lrg")
+                                .resizable()
+                                .frame(width:30, height:30)
+                        }
+                        else {
+                            Image("pause-button-lrg")
+                                .resizable()
+                                .frame(width:30, height:30)
+                        }
+                        
+                        
+                        
+                    }
+                    Button {
+                        TM.tenMilliseconds = 0
+                    } label: {
+                        Text("Reset")
+                            .font(.custom("FFF Forward", size: 20))
+                    }
+                }
+                .offset(x: geo.size.width / 3.25)
+                
+                Button {
+                    modeSelect = nil
+                } label: {
+                    Image("done-lrg")
+                        .resizable()
+                        .frame(width: 40, height: 40)
+                }
+                .offset(x: geo.size.width / 3.25)
+            }.navigationBarHidden(true)
+        }
     }
 }
 
 struct StudyTimeView_Previews: PreviewProvider {
     static var previews: some View {
-        StudyTimeView()
+        StudyTimeView(modeSelect: .constant(1))
     }
 }
