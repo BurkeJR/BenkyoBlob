@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		05E060302921C1DD00CAEA68 /* FlashcardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E0602E2921C1DD00CAEA68 /* FlashcardsView.swift */; };
+		05E060312921C1DD00CAEA68 /* MainBlobView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E0602F2921C1DD00CAEA68 /* MainBlobView.swift */; };
+		05E060332921C1F100CAEA68 /* DeckModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E060322921C1F100CAEA68 /* DeckModel.swift */; };
+		05E060352921C20400CAEA68 /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E060342921C20400CAEA68 /* Deck.swift */; };
+		05E060372921C22D00CAEA68 /* FFFFORWA.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 05E060362921C22D00CAEA68 /* FFFFORWA.TTF */; };
 		D40C711929217A0C00E49F63 /* BenkyoBlobApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40C711829217A0C00E49F63 /* BenkyoBlobApp.swift */; };
 		D40C711B29217A0C00E49F63 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40C711A29217A0C00E49F63 /* ContentView.swift */; };
 		D40C711D29217A1200E49F63 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D40C711C29217A1200E49F63 /* Assets.xcassets */; };
@@ -14,6 +19,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		05E0602E2921C1DD00CAEA68 /* FlashcardsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlashcardsView.swift; sourceTree = "<group>"; };
+		05E0602F2921C1DD00CAEA68 /* MainBlobView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainBlobView.swift; sourceTree = "<group>"; };
+		05E060322921C1F100CAEA68 /* DeckModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeckModel.swift; sourceTree = "<group>"; };
+		05E060342921C20400CAEA68 /* Deck.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Deck.swift; sourceTree = "<group>"; };
+		05E060362921C22D00CAEA68 /* FFFFORWA.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = FFFFORWA.TTF; sourceTree = "<group>"; };
+		05E060382921C27900CAEA68 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		D40C711529217A0C00E49F63 /* BenkyoBlob.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BenkyoBlob.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D40C711829217A0C00E49F63 /* BenkyoBlobApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BenkyoBlobApp.swift; sourceTree = "<group>"; };
 		D40C711A29217A0C00E49F63 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -35,6 +46,7 @@
 		D40C710C29217A0C00E49F63 = {
 			isa = PBXGroup;
 			children = (
+				05E060362921C22D00CAEA68 /* FFFFORWA.TTF */,
 				D40C711729217A0C00E49F63 /* BenkyoBlob */,
 				D40C711629217A0C00E49F63 /* Products */,
 			);
@@ -51,6 +63,7 @@
 		D40C711729217A0C00E49F63 /* BenkyoBlob */ = {
 			isa = PBXGroup;
 			children = (
+				05E060382921C27900CAEA68 /* Info.plist */,
 				D40C712829217C1000E49F63 /* Models */,
 				D40C712729217C0900E49F63 /* ViewModels */,
 				D40C712629217C0200E49F63 /* Views */,
@@ -72,6 +85,8 @@
 		D40C712629217C0200E49F63 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				05E0602E2921C1DD00CAEA68 /* FlashcardsView.swift */,
+				05E0602F2921C1DD00CAEA68 /* MainBlobView.swift */,
 				D40C711A29217A0C00E49F63 /* ContentView.swift */,
 			);
 			path = Views;
@@ -80,6 +95,7 @@
 		D40C712729217C0900E49F63 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				05E060322921C1F100CAEA68 /* DeckModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -87,6 +103,7 @@
 		D40C712829217C1000E49F63 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				05E060342921C20400CAEA68 /* Deck.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -151,6 +168,7 @@
 			files = (
 				D40C712029217A1200E49F63 /* Preview Assets.xcassets in Resources */,
 				D40C711D29217A1200E49F63 /* Assets.xcassets in Resources */,
+				05E060372921C22D00CAEA68 /* FFFFORWA.TTF in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -161,6 +179,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05E060352921C20400CAEA68 /* Deck.swift in Sources */,
+				05E060312921C1DD00CAEA68 /* MainBlobView.swift in Sources */,
+				05E060332921C1F100CAEA68 /* DeckModel.swift in Sources */,
+				05E060302921C1DD00CAEA68 /* FlashcardsView.swift in Sources */,
 				D40C711B29217A0C00E49F63 /* ContentView.swift in Sources */,
 				D40C711929217A0C00E49F63 /* BenkyoBlobApp.swift in Sources */,
 			);
@@ -293,6 +315,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"BenkyoBlob/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = BenkyoBlob/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -321,6 +344,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"BenkyoBlob/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = BenkyoBlob/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
