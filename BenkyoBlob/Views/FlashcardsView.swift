@@ -96,34 +96,50 @@ struct CardView: View {
                 }
                 .navigationBarHidden(true)
                 if (deck.deck.count > 1) {
-                    Button {
-                        if (cardIndex >= deck.deck.count - 1) {
-                            cardIndex = 0
-                        } else {
-                            cardIndex += 1
+                    HStack {
+                        Button {
+                            if (cardIndex <= 0) {
+                                cardIndex = deck.deck.count - 1
+                            } else {
+                                cardIndex -= 1
+                            }
+                        } label: {
+                            Image("prev-button-lrg")
+                                .resizable()
+                                .frame(width: geo.size.width / 10, height: geo.size.width / 10)
                         }
-                        showAnswer = false
+                        Button {
+                            if (cardIndex >= deck.deck.count - 1) {
+                                cardIndex = 0
+                            } else {
+                                cardIndex += 1
+                            }
+                            showAnswer = false
+                            
+                            
+                        } label: {
+                            Image("next-button-lrg")
+                                .resizable()
+                                .frame(width: geo.size.width / 10, height: geo.size.width / 10)
+                        }
+                    }
+                    
+                }
+                if editCard {
+                    Button {
+                        if selectedDeck != nil {
+                            let newCard = Flashcard(id: UUID(), question: "Question \(DM.allCurrDecks.allDecks[selectedDeck!].deck.count)", answer: "Answer")
+                            DM.allCurrDecks.allDecks[selectedDeck!].deck.insert(newCard, at: cardIndex)
+                        }
                         
                         
                     } label: {
-                        Image("next-button-lrg")
-                            .resizable()
-                            .frame(width: geo.size.width / 10, height: geo.size.width / 10)
-                    }
-                }
-                Button {
-                    if selectedDeck != nil {
-                        let newCard = Flashcard(id: UUID(), question: "Question \(DM.allCurrDecks.allDecks[selectedDeck!].deck.count)", answer: "Answer")
-                        DM.allCurrDecks.allDecks[selectedDeck!].deck.insert(newCard, at: cardIndex)
-                    }
-                    
-                    
-                } label: {
-                    ZStack {
-                        Image("add-icon-lrg")
-                            .resizable()
-                            .foregroundColor(.white)
-                            .frame(width: geo.size.width / 4, height: geo.size.width / 4)
+                        ZStack {
+                            Image("add-icon-lrg")
+                                .resizable()
+                                .foregroundColor(.white)
+                                .frame(width: geo.size.width / 4, height: geo.size.width / 4)
+                        }
                     }
                 }
             }
@@ -170,36 +186,54 @@ struct FlashcardsView: View {
                         }
                     ScrollView {
                         ForEach(DM.allCurrDecks.allDecks) { deck in
-                            ZStack {
-                                NavigationLink(tag: deck.id, selection: $selectedDeck) {
-                                    CardView(deck: deck, showAnswer: false, selectedDeck: $selectedDeck)
-                                        .environmentObject(DM)
-                                } label: {
-                                    
-                                    ZStack {
-                                        Image("flashcard-lrg")
+                            HStack {
+                                /*if (renameDeckMode) {
+                                    //let id = deck.id
+                                    Button {
+                                        //DM.allCurrDecks.allDecks.remove(at: id)
+                                    } label: {
+                                        Image("delete-icon-lrg")
                                             .resizable()
-                                            .frame(width: geo.size.width / 1.5, height: geo.size.height / 8)
-                                        if (!renameDeckMode) {
-                                            Text(deck.name)
-                                                .font(.custom("FFF Forward", size: 20))
-                                        } else {
-                                            Text("");
+                                            .frame(width: geo.size.width / 10, height: geo.size.width / 10)
+                                    }
+                                }*/
+                                ZStack {
+                                    NavigationLink(tag: deck.id, selection: $selectedDeck) {
+                                        CardView(deck: deck, showAnswer: false, selectedDeck: $selectedDeck)
+                                            .environmentObject(DM)
+                                    } label: {
+                                        
+                                        ZStack {
+                                            Image("flashcard-lrg")
+                                                .resizable()
+                                                .frame(width: geo.size.width / 1.5, height: geo.size.height / 8)
+                                            if (!renameDeckMode) {
+                                                Text(deck.name)
+                                                    .font(.custom("FFF Forward", size: 20))
+                                            } else {
+                                                Text("");
+                                            }
+                                            
+                                            
                                         }
                                         
+                                        
+                                    }
+                                    if renameDeckMode {
+                                        FieldView(name: Binding<String>(get: {
+                                            deck.name
+                                        }, set: { newValue in
+                                            DM.allCurrDecks.allDecks[deck.id].name = newValue
+                                        }))
+                                        .frame(width: geo.size.width / 1.7, height: geo.size.height / 8)
                                     }
                                     
+                                    
+                                    
+                                    
+                                    
+                                    
                                 }
-                                if renameDeckMode {
-                                    FieldView(name: Binding<String>(get: {
-                                        deck.name
-                                    }, set: { newValue in
-                                        DM.allCurrDecks.allDecks[deck.id].name = newValue
-                                    }))
-                                    .frame(width: geo.size.width / 1.7, height: geo.size.height / 8)
-                                }
-                                
-                                
                             }
                         }
                     }
@@ -217,6 +251,7 @@ struct FlashcardsView: View {
                                 .frame(width: geo.size.width / 4, height: geo.size.width / 4)
                         }
                     }
+                    
                     .offset(x: geo.size.width / 4, y: -geo.size.height / 10)
                 }
                 

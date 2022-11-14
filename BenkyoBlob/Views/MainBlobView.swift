@@ -23,11 +23,15 @@ struct MainBlobView: View {
                     VStack {
                         
                         //Spacer()
+                        Button {
+                            
+                        } label : {
+                            Image("slimepet-01-pink-02-sad-lrg")
+                                                        .resizable()
+                                                        .aspectRatio(contentMode: .fit)
+                                                        .offset(y: geo.size.width / geo.size.height > CGFloat(0.51) ? -geo.size.height / 10: geo.size.height / 16)
+                        }
                         
-                        Image("slimepet-01-pink-02-sad-lrg")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .offset(y: geo.size.width / geo.size.height > CGFloat(0.51) ? -geo.size.height / 10: geo.size.height / 16)
                         
                     }
                     HStack {
