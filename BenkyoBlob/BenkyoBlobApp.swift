@@ -12,6 +12,7 @@ struct BenkyoBlobApp: App {
     var body: some Scene {
         WindowGroup {
             MainBlobView()
+                .environmentObject(DeckModel())
         }
     }
 }

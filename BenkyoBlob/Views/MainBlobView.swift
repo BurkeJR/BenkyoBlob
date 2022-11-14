@@ -30,9 +30,9 @@ struct MainBlobView: View {
                                     .aspectRatio(contentMode: .fit)
                                     .frame(width: 50, height: 50)
                             }
-                            .padding()
+                            //.padding()
                             
-                            Spacer()
+                            //Spacer()
                             
                             NavigationLink {
                                 
@@ -43,9 +43,33 @@ struct MainBlobView: View {
                                     .frame(width: 50, height: 50)
 
                             }
-                            .padding()
+                            //.padding()
                             
-                            Spacer()
+                            //Spacer()
+                            
+                            NavigationLink {
+                                
+                            } label: {
+                                Image("ui-05-unlockables-light-lrg")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 50, height: 50)
+
+                            }
+                            //.padding()
+                            
+                            NavigationLink {
+                                
+                            } label: {
+                                Image("ui-04-calendar-light-lrg")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 50, height: 50)
+
+                            }
+                            //.padding()
+                            
+                            //Spacer()
                             
                             NavigationLink(tag: 3, selection: $modeSelect) {
                                 FlashcardsView(modeSelect: $modeSelect)
@@ -55,7 +79,7 @@ struct MainBlobView: View {
                                     .aspectRatio(contentMode: .fit)
                                     .frame(width: 50, height: 50)
                             }
-                            .padding()
+                            //.padding()
                         }
                         .offset(y: -geo.size.height / 3)
                         //Spacer()

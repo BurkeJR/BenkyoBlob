@@ -23,7 +23,7 @@ struct CardView: View {
                     Button {
                         selectedDeck = nil
                     } label: {
-                        Image(systemName: "arrow.left.circle")
+                        Image("back-button-lrg")
                             .resizable()
                             .frame(width: geo.size.width / 10, height: geo.size.width / 10)
                             .padding()
@@ -32,7 +32,7 @@ struct CardView: View {
                     Button {
                         editCard = !editCard
                     } label: {
-                        Image(systemName: "pencil.circle")
+                        Image("edit-lrg")
                             .resizable()
                             .frame(width: geo.size.width / 10, height: geo.size.width / 10)
                             .padding()
@@ -48,8 +48,9 @@ struct CardView: View {
                         showAnswer = !showAnswer
                     } label: {
                         ZStack {
-                            Rectangle()
-                                .frame(width: geo.size.width / 1.3, height: geo.size.height / 5)
+                            Image("flashcard-lrg")
+                                .resizable()
+                                .frame(width: geo.size.width / 1.1, height: geo.size.height / 4)
                                 .border(.black)
                                 .foregroundColor(.white)
                             if (!editCard) {
@@ -79,14 +80,14 @@ struct CardView: View {
                             }, set: { newValue in
                                 DM.allCurrDecks.allDecks[deck.id].deck[cardIndex].question = newValue
                             }))
-                            .frame(width: geo.size.width / 1.3, height: geo.size.height / 4)
+                            .frame(width: geo.size.width / 1.3, height: geo.size.height / 8)
                             
                             FieldView(name: Binding<String>(get: {
                                 deck.deck[cardIndex].answer
                             }, set: { newValue in
                                 DM.allCurrDecks.allDecks[deck.id].deck[cardIndex].answer = newValue
                             }))
-                            .frame(width: geo.size.width / 1.3, height: geo.size.height / 4)
+                            .frame(width: geo.size.width / 1.3, height: geo.size.height / 8)
                             
                         }
                         
@@ -105,9 +106,24 @@ struct CardView: View {
                         
                         
                     } label: {
-                        Image(systemName: "arrow.right")
+                        Image("next-button-lrg")
                             .resizable()
                             .frame(width: geo.size.width / 10, height: geo.size.width / 10)
+                    }
+                }
+                Button {
+                    if selectedDeck != nil {
+                        let newCard = Flashcard(id: UUID(), question: "Question \(DM.allCurrDecks.allDecks[selectedDeck!].deck.count)", answer: "Answer")
+                        DM.allCurrDecks.allDecks[selectedDeck!].deck.insert(newCard, at: cardIndex)
+                    }
+                    
+                    
+                } label: {
+                    ZStack {
+                        Image("add-icon-lrg")
+                            .resizable()
+                            .foregroundColor(.white)
+                            .frame(width: geo.size.width / 4, height: geo.size.width / 4)
                     }
                 }
             }
@@ -134,7 +150,7 @@ struct FlashcardsView: View {
                                 Button {
                                     modeSelect = nil
                                 } label: {
-                                    Image(systemName: "arrow.left.circle")
+                                    Image("back-button-lrg")
                                         .resizable()
                                         .frame(width: geo.size.width / 10, height: geo.size.width / 10)
                                         .aspectRatio(contentMode: .fit)
@@ -144,7 +160,7 @@ struct FlashcardsView: View {
                                 Button {
                                     renameDeckMode = !renameDeckMode
                                 } label: {
-                                    Image(systemName: "pencil.circle")
+                                    Image("edit-lrg")
                                         .resizable()
                                         .frame(width: geo.size.width / 10, height: geo.size.width / 10)
                                         .aspectRatio(contentMode: .fit)
@@ -161,9 +177,8 @@ struct FlashcardsView: View {
                                 } label: {
                                     
                                     ZStack {
-                                        Rectangle()
-                                            .foregroundColor(.white)
-                                            .border(.black)
+                                        Image("flashcard-lrg")
+                                            .resizable()
                                             .frame(width: geo.size.width / 1.5, height: geo.size.height / 8)
                                         if (!renameDeckMode) {
                                             Text(deck.name)
@@ -181,7 +196,7 @@ struct FlashcardsView: View {
                                     }, set: { newValue in
                                         DM.allCurrDecks.allDecks[deck.id].name = newValue
                                     }))
-                                    .frame(width: geo.size.width / 1.5, height: geo.size.height / 8)
+                                    .frame(width: geo.size.width / 1.7, height: geo.size.height / 8)
                                 }
                                 
                                 
@@ -196,16 +211,13 @@ struct FlashcardsView: View {
                         
                     } label: {
                         ZStack {
-                            Circle()
-                                .frame(height: geo.size.height / 10)
-                                .foregroundColor(.blue)
-                            Image(systemName: "plus")
+                            Image("add-icon-lrg")
                                 .resizable()
                                 .foregroundColor(.white)
-                                .frame(width: geo.size.width / 8, height: geo.size.width / 8)
+                                .frame(width: geo.size.width / 4, height: geo.size.width / 4)
                         }
                     }
-                    .offset(x: geo.size.width / 4)
+                    .offset(x: geo.size.width / 4, y: -geo.size.height / 10)
                 }
                 
                 
@@ -222,6 +234,8 @@ struct FieldView: View {
     
     var body : some View {
         TextField("Deck Name", text: $name)
+            .font(.custom("FFF Forward", size: 15))
+            .border(.black)
     }
     
 }
