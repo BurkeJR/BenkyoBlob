@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MainBlobView: View {
-    @EnvironmentObject var DM : DeckModel
+    @EnvironmentObject var DM : ViewModel
     @State var modeSelect : Int?
     var body: some View {
         NavigationView {
@@ -127,6 +127,6 @@ struct MainBlobView: View {
 struct MainBlobViewView_Previews: PreviewProvider {
     static var previews: some View {
         MainBlobView()
-            .environmentObject(DeckModel())
+            .environmentObject(ViewModel())
     }
 }

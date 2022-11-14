@@ -14,7 +14,7 @@ struct CardView: View {
     @State var cardIndex = 0;
     @State var editCard : Bool = false
     @Binding var selectedDeck : Int?
-    @EnvironmentObject var DM : DeckModel
+    @EnvironmentObject var DM : ViewModel
     
     var body: some View {
         GeometryReader { geo in
@@ -149,7 +149,7 @@ struct CardView: View {
 }
 
 struct FlashcardsView: View {
-    @EnvironmentObject var DM : DeckModel
+    @EnvironmentObject var DM : ViewModel
     @State var currentDeck : String?
     @State var renameDeckMode : Bool = false
     @Binding var modeSelect : Int?
@@ -278,6 +278,6 @@ struct FieldView: View {
 struct FlashcardsView_Previews: PreviewProvider {
     static var previews: some View {
         FlashcardsView(modeSelect: .constant(5))
-            .environmentObject(DeckModel())
+            .environmentObject(ViewModel())
     }
 }
