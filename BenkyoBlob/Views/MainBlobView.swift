@@ -37,8 +37,8 @@ struct MainBlobView: View {
                                 
                                 //Spacer()
                                 ToolbarItem(placement: .navigation) {
-                                    NavigationLink {
-                                        
+                                    NavigationLink(tag: 2, selection: $modeSelect) {
+                                        QuizesView(modeSelect: $modeSelect)
                                     } label: {
                                         Image("ui-03-quiz-light-with-colored-shadow-lrg")
                                             .resizable()

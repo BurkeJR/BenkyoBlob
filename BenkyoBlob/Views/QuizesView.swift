@@ -8,6 +8,16 @@
 import SwiftUI
 
 
+
+struct QuestionView: View {
+    
+    var question: Question
+    
+    var body: some View {
+        Text("temp")
+    }
+}
+
 struct QuizView: View {
     
     var quiz: Quiz
@@ -15,45 +25,62 @@ struct QuizView: View {
     @State var quesitonIndex = 0
     @State var showNextQuestion = false
     
+    @Binding var selectedQuiz: Int?
+    
     var body: some View {
         let question = quiz.questions[quesitonIndex]
-        VStack {
-            Text("Question \(quesitonIndex + 1)")
-                .font(.largeTitle)
-            
-            Text(question.question)
-                .font(.title)
-            ForEach(question.choices, id: \.self) { choice in
+        GeometryReader { geo in
+            VStack {
                 Button {
-                    showNextQuestion = true
+                    selectedQuiz = nil
                 } label: {
-                    ZStack {
-                        RoundedRectangle(cornerRadius: 20)
-                            .frame(width: 100, height: 30)
-                            .foregroundColor(.white)
-                            .shadow(radius: 20)
-                            .padding(.vertical, 5)
-                        Text(choice)
-                            .foregroundColor(.black)
+                    Image("back-button-lrg")
+                        .resizable()
+                        .frame(width: geo.size.width / 10, height: geo.size.width / 10)
+                        .padding()
+                }.offset(x: geo.size.width / -3.25)
+                
+                Text("Question \(quesitonIndex + 1)")
+                    .font(.custom("FFF Forward", size: geo.size.height / 15))
+                
+                Text(question.question)
+                    .font(.custom("FFF Forward", size: geo.size.height / 25))
+                
+                ForEach(question.choices, id: \.self) { choice in
+                    Button {
+                        showNextQuestion = true
+                    } label: {
+                        ZStack {
+                            Image("flashcard-lrg")
+                                .resizable()
+                                .frame(width: geo.size.width / 1.5, height: geo.size.height / 8)
+                            Text(choice)
+                                .font(.custom("FFF Forward", size: geo.size.height / 30))
+                        }
                     }
                 }
-            }
-            
-            if showNextQuestion {
-                Button {
-                    quesitonIndex += 1
-                } label: {
-                    RoundedRectangle(cornerRadius: 20)
-                        .frame(width: 280, height: 30)
-                        .foregroundColor(.green)
-                        .shadow(radius: 20)
-                        .padding(.vertical, 5)
-                    Text("Next Question")
-                        .foregroundColor(.black)
+                
+                if showNextQuestion {
+                    Button {
+                        if quesitonIndex < quiz.questions.count - 1 {
+                            quesitonIndex += 1
+                            showNextQuestion = false
+                        } else {
+                            // navigate back to quizes page
+                        }
+                    } label: {
+                        ZStack {
+                            Image("flashcard-lrg")
+                                .resizable()
+                                .frame(width: geo.size.width / 1.5, height: geo.size.height / 8)
+                            Text("Next Question")
+                                .font(.custom("FFF Forward", size: geo.size.height / 30))
+                        }
+                    }
                 }
-            }
-            
-        }
+                
+            }.offset(x: geo.size.width / 6)
+        }.navigationBarHidden(true)
     }
 }
 
@@ -61,41 +88,52 @@ struct QuizesView: View {
     
     @EnvironmentObject var VM: ViewModel
     
+    @Binding var modeSelect: Int?
+    
+    @State var selectedQuiz: Int?
+    
     var body: some View {
-        NavigationView {
-            VStack {
-                ScrollView {
-                    ForEach(VM.quizes) { quiz in
-                        NavigationLink {
-                            QuizView(quiz: quiz)
-                        } label: {
-                            ZStack {
-                                RoundedRectangle(cornerRadius: 20)
-                                    .frame(width: 280, height: 30)
-                                    .foregroundColor(.white)
-                                    .shadow(radius: 10)
-                                    .padding()
-                                Text(quiz.name)
-                                    .font(.title)
-                                    .foregroundColor(.black)
+        GeometryReader { geo in
+            NavigationView {
+                VStack {
+                    Button {
+                        modeSelect = nil
+                    } label: {
+                        Image("back-button-lrg")
+                            .resizable()
+                            .frame(width: geo.size.width / 10, height: geo.size.width / 10)
+                            .padding()
+                    }.offset(x: geo.size.width / -3.25)
+                    ScrollView {
+                        ForEach(VM.quizes) { quiz in
+                            NavigationLink(tag: quiz.id, selection: $selectedQuiz) {
+                                QuizView(quiz: quiz, selectedQuiz: $selectedQuiz)
+                            } label: {
+                                ZStack {
+                                    Image("flashcard-lrg")
+                                        .resizable()
+                                        .frame(width: geo.size.width / 1.5, height: geo.size.height / 8)
+                                    Text(quiz.name)
+                                        .font(.custom("FFF Forward", size: geo.size.height / 30))
+                                }
                             }
                         }
                     }
-                }
-            }.navigationTitle("Quizes")
-        }
+                }.navigationBarHidden(true)
+            }
+        }.navigationBarHidden(true)
     }
 }
 
 struct QuizViewes_Previews: PreviewProvider {
     static var previews: some View {
-        QuizesView()
+        QuizesView(modeSelect: .constant(2))
             .environmentObject(ViewModel())
     }
 }
 
-struct QuizView_Previews: PreviewProvider {
-    static var previews: some View {
-        QuizView(quiz: ViewModel().quizes[0])
-    }
-}
+//struct QuizView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        QuizView(quiz: ViewModel().quizes[0])
+//    }
+//}
