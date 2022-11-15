@@ -13,6 +13,8 @@
 		05E060352921C20400CAEA68 /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E060342921C20400CAEA68 /* Deck.swift */; };
 		05E060372921C22D00CAEA68 /* FFFFORWA.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 05E060362921C22D00CAEA68 /* FFFFORWA.TTF */; };
 		05E752872922DED9003D2107 /* StudyTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E752862922DED9003D2107 /* StudyTimeView.swift */; };
+		05E75289292305F7003D2107 /* UnlockablesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E75288292305F7003D2107 /* UnlockablesView.swift */; };
+		05E7528B29230C18003D2107 /* Unlockable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E7528A29230C18003D2107 /* Unlockable.swift */; };
 		D40C711929217A0C00E49F63 /* BenkyoBlobApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40C711829217A0C00E49F63 /* BenkyoBlobApp.swift */; };
 		D40C711B29217A0C00E49F63 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40C711A29217A0C00E49F63 /* ContentView.swift */; };
 		D40C711D29217A1200E49F63 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D40C711C29217A1200E49F63 /* Assets.xcassets */; };
@@ -29,6 +31,8 @@
 		05E060362921C22D00CAEA68 /* FFFFORWA.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = FFFFORWA.TTF; sourceTree = "<group>"; };
 		05E060382921C27900CAEA68 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		05E752862922DED9003D2107 /* StudyTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyTimeView.swift; sourceTree = "<group>"; };
+		05E75288292305F7003D2107 /* UnlockablesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnlockablesView.swift; sourceTree = "<group>"; };
+		05E7528A29230C18003D2107 /* Unlockable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Unlockable.swift; sourceTree = "<group>"; };
 		D40C711529217A0C00E49F63 /* BenkyoBlob.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BenkyoBlob.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D40C711829217A0C00E49F63 /* BenkyoBlobApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BenkyoBlobApp.swift; sourceTree = "<group>"; };
 		D40C711A29217A0C00E49F63 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -92,6 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				05E0602E2921C1DD00CAEA68 /* FlashcardsView.swift */,
+				05E75288292305F7003D2107 /* UnlockablesView.swift */,
 				05E752862922DED9003D2107 /* StudyTimeView.swift */,
 				05E0602F2921C1DD00CAEA68 /* MainBlobView.swift */,
 				D40C711A29217A0C00E49F63 /* ContentView.swift */,
@@ -112,6 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				05E060342921C20400CAEA68 /* Deck.swift */,
+				05E7528A29230C18003D2107 /* Unlockable.swift */,
 				D46CAC2A2922F8F4001D9D24 /* Quiz.swift */,
 			);
 			path = Models;
@@ -192,6 +198,8 @@
 				05E060312921C1DD00CAEA68 /* MainBlobView.swift in Sources */,
 				05E060332921C1F100CAEA68 /* ViewModel.swift in Sources */,
 				05E060302921C1DD00CAEA68 /* FlashcardsView.swift in Sources */,
+				05E75289292305F7003D2107 /* UnlockablesView.swift in Sources */,
+				05E7528B29230C18003D2107 /* Unlockable.swift in Sources */,
 				D40C711B29217A0C00E49F63 /* ContentView.swift in Sources */,
 				D46CAC292922F891001D9D24 /* QuizesView.swift in Sources */,
 				05E752872922DED9003D2107 /* StudyTimeView.swift in Sources */,

@@ -51,11 +51,9 @@ struct MainBlobView: View {
                                 //.padding()
                                 
                                 //Spacer()
-                                ToolbarItem(placement: .principal) {
-                                    
-                                    
-                                    NavigationLink {
-                                        
+                                ToolbarItem(placement: .primaryAction) {
+                                    NavigationLink(tag: 3, selection: $modeSelect) {
+                                        UnlockablesView(modeSelect: $modeSelect)
                                     } label: {
                                         Image("ui-05-unlockables-light-with-colored-shadow-lrg")
                                             .resizable()
@@ -63,10 +61,12 @@ struct MainBlobView: View {
                                             .frame(width: 40, height: 40)
                                         
                                     }
+                                    //.offset(x: geo.size.width / 50)
+                                    .padding()
                                 }
-                                //.padding()
                                 
-                                ToolbarItem(placement: .primaryAction) {
+                                
+                                ToolbarItem(placement: .destructiveAction) {
                                     
                                     
                                     NavigationLink {

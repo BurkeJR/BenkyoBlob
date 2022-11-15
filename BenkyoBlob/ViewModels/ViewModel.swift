@@ -12,7 +12,11 @@ class ViewModel : ObservableObject {
     @Published var allCurrDecks = AllDecks(allDecks: [Deck]())
     @Published var defaultDeck = Deck(id: 0, name: "Pop Culture", deck: [Flashcard]())
     
+    @Published var allUnlockables = AllUnlockables(treasure: [Unlockable]())
+    
     @Published var quizes = [Quiz]()
+    
+    
     
     init() {
         defaultDeck.deck.append(Flashcard(id: UUID(), question: "Who lives in a pineapple under the sea?", answer: "SPONGEBOB SQUAREPANTS"))
@@ -26,6 +30,14 @@ class ViewModel : ObservableObject {
         questions.append(Question(id: 3, question: "True or False: This sentence is a lie.", choices: ["True", "False", "OK"], answer: 3))
         
         quizes.append(Quiz(id: 1, name: "Sample Quiz", questions: questions))
+        
+        allUnlockables.treasure.append(Unlockable(id: 0, name: "Takoyaki", description: "Takoyaki is a delicious Japanese dish that is basically described as deep-fried octopus pieces drizzled with a savory sauce and often topped with seaweed flakes and dried fish flakes."))
+        allUnlockables.treasure.append(Unlockable(id: 1, name: "Sushi", description: "Sushi, while a great dish, isn't for everyone.  People either love or hate sushi, but it depends on what kind you try."))
+        allUnlockables.treasure.append(Unlockable(id: 2, name: "Egg", description: "You can never go wrong with eggs.  Eggs can be cooked in so many different ways!"))
+        allUnlockables.treasure.append(Unlockable(id: 3, name: "", description: ""))
+        allUnlockables.treasure.append(Unlockable(id: 4, name: "", description: ""))
+        allUnlockables.treasure.append(Unlockable(id: 5, name: "", description: ""))
+        allUnlockables.treasure.append(Unlockable(id: 6, name: "", description: ""))
     }
     
 }
