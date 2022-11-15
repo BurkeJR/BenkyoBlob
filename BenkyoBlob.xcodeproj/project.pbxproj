@@ -15,6 +15,7 @@
 		05E752872922DED9003D2107 /* StudyTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E752862922DED9003D2107 /* StudyTimeView.swift */; };
 		05E75289292305F7003D2107 /* UnlockablesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E75288292305F7003D2107 /* UnlockablesView.swift */; };
 		05E7528B29230C18003D2107 /* Unlockable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E7528A29230C18003D2107 /* Unlockable.swift */; };
+		05E7528D2923370B003D2107 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E7528C2923370B003D2107 /* Note.swift */; };
 		D40C711929217A0C00E49F63 /* BenkyoBlobApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40C711829217A0C00E49F63 /* BenkyoBlobApp.swift */; };
 		D40C711B29217A0C00E49F63 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40C711A29217A0C00E49F63 /* ContentView.swift */; };
 		D40C711D29217A1200E49F63 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D40C711C29217A1200E49F63 /* Assets.xcassets */; };
@@ -33,6 +34,7 @@
 		05E752862922DED9003D2107 /* StudyTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyTimeView.swift; sourceTree = "<group>"; };
 		05E75288292305F7003D2107 /* UnlockablesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnlockablesView.swift; sourceTree = "<group>"; };
 		05E7528A29230C18003D2107 /* Unlockable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Unlockable.swift; sourceTree = "<group>"; };
+		05E7528C2923370B003D2107 /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
 		D40C711529217A0C00E49F63 /* BenkyoBlob.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BenkyoBlob.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D40C711829217A0C00E49F63 /* BenkyoBlobApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BenkyoBlobApp.swift; sourceTree = "<group>"; };
 		D40C711A29217A0C00E49F63 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 				05E060342921C20400CAEA68 /* Deck.swift */,
 				05E7528A29230C18003D2107 /* Unlockable.swift */,
 				D46CAC2A2922F8F4001D9D24 /* Quiz.swift */,
+				05E7528C2923370B003D2107 /* Note.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -205,6 +208,7 @@
 				05E752872922DED9003D2107 /* StudyTimeView.swift in Sources */,
 				D40C711929217A0C00E49F63 /* BenkyoBlobApp.swift in Sources */,
 				D46CAC2B2922F8F4001D9D24 /* Quiz.swift in Sources */,
+				05E7528D2923370B003D2107 /* Note.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

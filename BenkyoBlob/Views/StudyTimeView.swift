@@ -36,7 +36,9 @@ class TimeManager: ObservableObject {
 
 struct StudyTimeView: View {
     @ObservedObject var TM = TimeManager()
+    @State var editNotes : Bool = false
     @Binding var modeSelect : Int?
+    @EnvironmentObject var VM : ViewModel
     var formattedString : String {
         let total_seconds = TM.tenMilliseconds / 100
         let hours = total_seconds / (60 * 60)
@@ -50,19 +52,31 @@ struct StudyTimeView: View {
     var body: some View {
         GeometryReader { geo in
             VStack {
-                
-                Button {
-                 modeSelect = nil
-                 } label: {
-                 Image("back-button-lrg")
-                 .resizable()
-                 .frame(width: geo.size.width / 10, height: geo.size.width / 10)
-                 .padding()
-                 }
+                HStack {
+                    Button {
+                        modeSelect = nil
+                    } label: {
+                        Image("back-button-lrg")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: geo.size.width / 10, height: geo.size.width / 10)
+                            .padding()
+                    }
+                    Spacer()
+                    Button {
+                        editNotes = !editNotes
+                    } label: {
+                        Image("edit-lrg")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: geo.size.width / 10, height: geo.size.width / 10)
+                            .padding()
+                    }
+                }
                 
                 Text(formattedString)
                     .font(.custom("FFF Forward", size: geo.size.width / 15))
-                    .offset(x: geo.size.width / 3.25)
+                //.offset(x: geo.size.width / 3.25)
                 HStack {
                     Button {
                         if TM.status == .stopped {
@@ -92,19 +106,65 @@ struct StudyTimeView: View {
                         TM.tenMilliseconds = 0
                     } label: {
                         Text("Reset")
-                            .font(.custom("FFF Forward", size: 20))
+                            .font(.custom("FFF Forward", size: geo.size.height / 50))
                     }
                 }
-                .offset(x: geo.size.width / 3.25)
+                //.offset(x: geo.size.width / 3.25)
                 
-                Button {
-                    modeSelect = nil
-                } label: {
-                    Image("done-lrg")
-                        .resizable()
-                        .frame(width: 40, height: 40)
+                HStack {
+                    Button {
+                        modeSelect = nil
+                    } label: {
+                        Image("done-lrg")
+                            .resizable()
+                            .frame(width: geo.size.width / 10, height: geo.size.width / 10)
+                    }
+                    Button {
+                        VM.notes.append(Note(id: VM.notes.count, content:"Note \(VM.notes.count)"))
+                    } label: {
+                        ZStack {
+                            Image("note-lrg")
+                                .resizable()
+                                .frame(width: geo.size.width / 10, height: geo.size.width / 10)
+                            Image("add-icon-lrg")
+                                .resizable()
+                                .frame(width: geo.size.width / 20, height: geo.size.width / 20)
+                                .offset(x: geo.size.width / 25, y: geo.size.height / 50)
+                        }
+                        
+                    }
                 }
-                .offset(x: geo.size.width / 3.25)
+                
+                ScrollView {
+                    VStack {
+                        ForEach(VM.notes) { note in
+                            ZStack {
+                                Image("note-lrg")
+                                    .resizable()
+                                    .frame(width: geo.size.width / 2, height: geo.size.width / 2)
+                                if (!editNotes) {
+                                    Text(note.content)
+                                        .frame(width: geo.size.width / 2.5, height: geo.size.width / 2.5)
+                                        .font(.custom("FFF Forward", size: geo.size.width / 30))
+                                }
+                                else {
+                                    FieldView(name: Binding<String>(get: {
+                                        note.content
+                                    }, set: { newValue in
+                                        VM.notes[note.id].content = newValue
+                                    }))
+                                    .frame(width: geo.size.width / 2.5)
+                                }
+                                
+                                
+                                
+                            }
+                            
+                        }
+                    }
+                }
+                
+                //.offset(x: geo.size.width / 3.25)
             }.navigationBarHidden(true)
         }
     }
@@ -113,5 +173,6 @@ struct StudyTimeView: View {
 struct StudyTimeView_Previews: PreviewProvider {
     static var previews: some View {
         StudyTimeView(modeSelect: .constant(1))
+            .environmentObject(ViewModel())
     }
 }

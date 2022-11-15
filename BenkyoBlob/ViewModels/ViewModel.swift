@@ -16,6 +16,8 @@ class ViewModel : ObservableObject {
     
     @Published var quizes = [Quiz]()
     
+    @Published var notes = [Note]()
+    
     
     
     init() {
@@ -38,6 +40,8 @@ class ViewModel : ObservableObject {
         allUnlockables.treasure.append(Unlockable(id: 4, name: "", description: ""))
         allUnlockables.treasure.append(Unlockable(id: 5, name: "", description: ""))
         allUnlockables.treasure.append(Unlockable(id: 6, name: "", description: ""))
+        
+        notes.append(Note(id: 0, content: "If you're reading this note, you just lost the game."))
     }
     
 }
