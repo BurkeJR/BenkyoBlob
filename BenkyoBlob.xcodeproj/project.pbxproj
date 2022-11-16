@@ -22,6 +22,7 @@
 		D40C712029217A1200E49F63 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D40C711F29217A1200E49F63 /* Preview Assets.xcassets */; };
 		D46CAC292922F891001D9D24 /* QuizesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46CAC282922F891001D9D24 /* QuizesView.swift */; };
 		D46CAC2B2922F8F4001D9D24 /* Quiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46CAC2A2922F8F4001D9D24 /* Quiz.swift */; };
+		D46CAC2D292475F7001D9D24 /* TheCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46CAC2C292475F7001D9D24 /* TheCalendarView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		D40C711F29217A1200E49F63 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		D46CAC282922F891001D9D24 /* QuizesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizesView.swift; sourceTree = "<group>"; };
 		D46CAC2A2922F8F4001D9D24 /* Quiz.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quiz.swift; sourceTree = "<group>"; };
+		D46CAC2C292475F7001D9D24 /* TheCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheCalendarView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 				05E0602F2921C1DD00CAEA68 /* MainBlobView.swift */,
 				D40C711A29217A0C00E49F63 /* ContentView.swift */,
 				D46CAC282922F891001D9D24 /* QuizesView.swift */,
+				D46CAC2C292475F7001D9D24 /* TheCalendarView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -204,6 +207,7 @@
 				05E75289292305F7003D2107 /* UnlockablesView.swift in Sources */,
 				05E7528B29230C18003D2107 /* Unlockable.swift in Sources */,
 				D40C711B29217A0C00E49F63 /* ContentView.swift in Sources */,
+				D46CAC2D292475F7001D9D24 /* TheCalendarView.swift in Sources */,
 				D46CAC292922F891001D9D24 /* QuizesView.swift in Sources */,
 				05E752872922DED9003D2107 /* StudyTimeView.swift in Sources */,
 				D40C711929217A0C00E49F63 /* BenkyoBlobApp.swift in Sources */,

@@ -9,15 +9,6 @@ import SwiftUI
 
 
 
-struct QuestionView: View {
-    
-    var question: Question
-    
-    var body: some View {
-        Text("temp")
-    }
-}
-
 struct QuizView: View {
     
     var quiz: Quiz
@@ -66,20 +57,26 @@ struct QuizView: View {
                             quesitonIndex += 1
                             showNextQuestion = false
                         } else {
-                            // navigate back to quizes page
+                            selectedQuiz = nil
                         }
                     } label: {
                         ZStack {
                             Image("flashcard-lrg")
                                 .resizable()
                                 .frame(width: geo.size.width / 1.5, height: geo.size.height / 8)
-                            Text("Next Question")
-                                .font(.custom("FFF Forward", size: geo.size.height / 30))
+                            if quesitonIndex < quiz.questions.count - 1 {
+                                Text("Next Question")
+                                    .font(.custom("FFF Forward", size: geo.size.height / 30))
+                            } else {
+                                Text("Finish")
+                                    .font(.custom("FFF Forward", size: geo.size.height / 30))
+                            }
+                            
                         }
                     }
                 }
                 
-            }.offset(x: geo.size.width / 6)
+            }.offset(x: geo.size.width / 10)
         }.navigationBarHidden(true)
     }
 }
