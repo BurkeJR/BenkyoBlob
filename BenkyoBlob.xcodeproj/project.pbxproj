@@ -16,6 +16,7 @@
 		05E75289292305F7003D2107 /* UnlockablesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E75288292305F7003D2107 /* UnlockablesView.swift */; };
 		05E7528B29230C18003D2107 /* Unlockable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E7528A29230C18003D2107 /* Unlockable.swift */; };
 		05E7528D2923370B003D2107 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E7528C2923370B003D2107 /* Note.swift */; };
+		64763CC4DAB5B988E7643F25 /* Pods_BenkyoBlob.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A9261BBED66F74EC5A8BFC9 /* Pods_BenkyoBlob.framework */; };
 		D40C711929217A0C00E49F63 /* BenkyoBlobApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40C711829217A0C00E49F63 /* BenkyoBlobApp.swift */; };
 		D40C711B29217A0C00E49F63 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40C711A29217A0C00E49F63 /* ContentView.swift */; };
 		D40C711D29217A1200E49F63 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D40C711C29217A1200E49F63 /* Assets.xcassets */; };
@@ -36,6 +37,9 @@
 		05E75288292305F7003D2107 /* UnlockablesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnlockablesView.swift; sourceTree = "<group>"; };
 		05E7528A29230C18003D2107 /* Unlockable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Unlockable.swift; sourceTree = "<group>"; };
 		05E7528C2923370B003D2107 /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
+		1A9261BBED66F74EC5A8BFC9 /* Pods_BenkyoBlob.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BenkyoBlob.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5D068DA855D9870997E92654 /* Pods-BenkyoBlob.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BenkyoBlob.debug.xcconfig"; path = "Target Support Files/Pods-BenkyoBlob/Pods-BenkyoBlob.debug.xcconfig"; sourceTree = "<group>"; };
+		ADEC211E6417C22292E2AF2E /* Pods-BenkyoBlob.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BenkyoBlob.release.xcconfig"; path = "Target Support Files/Pods-BenkyoBlob/Pods-BenkyoBlob.release.xcconfig"; sourceTree = "<group>"; };
 		D40C711529217A0C00E49F63 /* BenkyoBlob.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BenkyoBlob.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D40C711829217A0C00E49F63 /* BenkyoBlobApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BenkyoBlobApp.swift; sourceTree = "<group>"; };
 		D40C711A29217A0C00E49F63 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -51,18 +55,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64763CC4DAB5B988E7643F25 /* Pods_BenkyoBlob.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0326488A1D42BC4D933BF044 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1A9261BBED66F74EC5A8BFC9 /* Pods_BenkyoBlob.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		D40C710C29217A0C00E49F63 = {
 			isa = PBXGroup;
 			children = (
 				05E060362921C22D00CAEA68 /* FFFFORWA.TTF */,
 				D40C711729217A0C00E49F63 /* BenkyoBlob */,
 				D40C711629217A0C00E49F63 /* Products */,
+				DF0723695084954F02864929 /* Pods */,
+				0326488A1D42BC4D933BF044 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -129,6 +144,16 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		DF0723695084954F02864929 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5D068DA855D9870997E92654 /* Pods-BenkyoBlob.debug.xcconfig */,
+				ADEC211E6417C22292E2AF2E /* Pods-BenkyoBlob.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -136,9 +161,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D40C712329217A1200E49F63 /* Build configuration list for PBXNativeTarget "BenkyoBlob" */;
 			buildPhases = (
+				ED101F3BAB1D8B8E4AFB6E4B /* [CP] Check Pods Manifest.lock */,
 				D40C711129217A0C00E49F63 /* Sources */,
 				D40C711229217A0C00E49F63 /* Frameworks */,
 				D40C711329217A0C00E49F63 /* Resources */,
+				7C034BCFFE4463CDF9950C3A /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -194,6 +221,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		7C034BCFFE4463CDF9950C3A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BenkyoBlob/Pods-BenkyoBlob-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BenkyoBlob/Pods-BenkyoBlob-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BenkyoBlob/Pods-BenkyoBlob-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		ED101F3BAB1D8B8E4AFB6E4B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BenkyoBlob-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D40C711129217A0C00E49F63 /* Sources */ = {
@@ -335,6 +404,7 @@
 		};
 		D40C712429217A1200E49F63 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5D068DA855D9870997E92654 /* Pods-BenkyoBlob.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -364,6 +434,7 @@
 		};
 		D40C712529217A1200E49F63 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = ADEC211E6417C22292E2AF2E /* Pods-BenkyoBlob.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

@@ -1,0 +1,16 @@
+PODS:
+  - SwiftUICalendar (0.1.12)
+
+DEPENDENCIES:
+  - SwiftUICalendar
+
+SPEC REPOS:
+  trunk:
+    - SwiftUICalendar
+
+SPEC CHECKSUMS:
+  SwiftUICalendar: 83eb88083294fd0828fc26f68facbe0c5438b3a8
+
+PODFILE CHECKSUM: 3771927601120bc657a6228f9e32939c4a550840
+
+COCOAPODS: 1.11.3

@@ -1,0 +1,6 @@
+framework module SwiftUICalendar {
+  umbrella header "SwiftUICalendar-umbrella.h"
+
+  export *
+  module * { export * }
+}
