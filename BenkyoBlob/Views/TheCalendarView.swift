@@ -4,6 +4,8 @@
 //
 //  Created by John Burke on 11/15/22.
 //
+// Calendar design based on
+// https://iosexample.com/a-simple-calendar-with-swiftui/
 
 import SwiftUI
 
