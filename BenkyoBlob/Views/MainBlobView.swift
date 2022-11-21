@@ -69,8 +69,8 @@ struct MainBlobView: View {
                                 ToolbarItem(placement: .destructiveAction) {
                                     
                                     
-                                    NavigationLink {
-                                        
+                                    NavigationLink(tag: 4, selection: $modeSelect) {
+                                        TheCalendarView(modeSelect: $modeSelect)
                                     } label: {
                                         Image("ui-04-calendar-light-with-colored-shadow-lrg")
                                             .resizable()
