@@ -26,7 +26,7 @@ struct TheCalendarView: View {
                         .resizable()
                         .frame(width: geo.size.width / 10, height: geo.size.width / 10)
                         .padding()
-                }.offset(x: geo.size.width / -3.25)
+                }.offset(x: geo.size.width / -2.5)
                 
                 DatePicker("Select Date", selection: $selectedDate, displayedComponents: [.date])
                     .padding(.horizontal)

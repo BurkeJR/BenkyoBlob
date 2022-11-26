@@ -30,7 +30,8 @@ struct UnlockablesView: View {
                             ForEach(VM.allUnlockables.treasure) { item in
                                 VStack {
                                     if (item.id % 4 == 0) {
-                                        Rectangle()
+                                        Image("collectibles-box-lrg")
+                                            .resizable()
                                             .frame(width: 50, height: 50)
                                             .padding()
                                     }
@@ -43,7 +44,8 @@ struct UnlockablesView: View {
                             ForEach(VM.allUnlockables.treasure) { item in
                                 VStack {
                                     if (item.id % 4 == 1) {
-                                        Rectangle()
+                                        Image("collectibles-box-lrg")
+                                            .resizable()
                                             .frame(width: 50, height: 50)
                                             .padding()
                                     }
@@ -55,7 +57,8 @@ struct UnlockablesView: View {
                             ForEach(VM.allUnlockables.treasure) { item in
                                 VStack {
                                     if (item.id % 4 == 2) {
-                                        Rectangle()
+                                        Image("collectibles-box-lrg")
+                                            .resizable()
                                             .frame(width: 50, height: 50)
                                             .padding()
                                     }
@@ -67,7 +70,8 @@ struct UnlockablesView: View {
                             ForEach(VM.allUnlockables.treasure) { item in
                                 VStack {
                                     if (item.id % 4 == 3) {
-                                        Rectangle()
+                                        Image("collectibles-box-lrg")
+                                            .resizable()
                                             .frame(width: 50, height: 50)
                                             .padding()
                                     }

@@ -9,7 +9,12 @@ import SwiftUI
 
 struct MainBlobView: View {
     @EnvironmentObject var DM : ViewModel
+    @State var showHealth = false
     @State var modeSelect : Int?
+    @State var happiness = 0
+    @State var maxHappiness = 10
+    @State var EXP = 0
+    @State var maxEXP = 20
     var body: some View {
         NavigationView {
             GeometryReader { geo in
@@ -97,7 +102,7 @@ struct MainBlobView: View {
                             }
                         //Spacer()
                         Button {
-                            
+                            showHealth = !showHealth
                         } label : {
                             Image("slimepet-01-pink-02-sad-lrg")
                                 .resizable()
@@ -107,11 +112,104 @@ struct MainBlobView: View {
                         
                         
                     }
-                    HStack {
-                        
-                        //.padding()
+                    
+                    if (showHealth) {
+                        ZStack {
+                            Image("flashcard-lrg")
+                                .resizable()
+                                .frame(width: geo.size.width / 1.1, height: geo.size.width / 5)
+                                .offset(y: -geo.size.height / 15)
+                            HStack {
+                                if (Double(happiness) / Double(maxHappiness) >= 0.1) {
+                                    if (Double(happiness) / Double(maxHappiness) >= 0.2) {
+                                        Image("health-lrg")
+                                            .resizable()
+                                            .frame(width: geo.size.width / 7, height: geo.size.width / 7)
+                                    }
+                                    else {
+                                        Image("health-half-lrg")
+                                            .resizable()
+                                            .frame(width: geo.size.width / 7, height: geo.size.width / 7)
+                                    }
+                                }
+                                else {
+                                    Image("health-empty-lrg")
+                                        .resizable()
+                                        .frame(width: geo.size.width / 7, height: geo.size.width / 7)
+                                }
+                                if (Double(happiness) / Double(maxHappiness) >= 0.3) {
+                                    if (Double(happiness) / Double(maxHappiness) >= 0.4) {
+                                        Image("health-lrg")
+                                            .resizable()
+                                            .frame(width: geo.size.width / 7, height: geo.size.width / 7)
+                                    }
+                                    else {
+                                        Image("health-half-lrg")
+                                            .resizable()
+                                            .frame(width: geo.size.width / 7, height: geo.size.width / 7)
+                                    }
+                                }
+                                else {
+                                    Image("health-empty-lrg")
+                                        .resizable()
+                                        .frame(width: geo.size.width / 7, height: geo.size.width / 7)
+                                }
+                                if (Double(happiness) / Double(maxHappiness) >= 0.5) {
+                                    if (Double(happiness) / Double(maxHappiness) >= 0.6) {
+                                        Image("health-lrg")
+                                            .resizable()
+                                            .frame(width: geo.size.width / 7, height: geo.size.width / 7)
+                                    }
+                                    else {
+                                        Image("health-half-lrg")
+                                            .resizable()
+                                            .frame(width: geo.size.width / 7, height: geo.size.width / 7)
+                                    }
+                                }
+                                else {
+                                    Image("health-empty-lrg")
+                                        .resizable()
+                                        .frame(width: geo.size.width / 7, height: geo.size.width / 7)
+                                }
+                                if (Double(happiness) / Double(maxHappiness) >= 0.7) {
+                                    if (Double(happiness) / Double(maxHappiness) >= 0.8) {
+                                        Image("health-lrg")
+                                            .resizable()
+                                            .frame(width: geo.size.width / 7, height: geo.size.width / 7)
+                                    }
+                                    else {
+                                        Image("health-half-lrg")
+                                            .resizable()
+                                            .frame(width: geo.size.width / 7, height: geo.size.width / 7)
+                                    }
+                                }
+                                else {
+                                    Image("health-empty-lrg")
+                                        .resizable()
+                                        .frame(width: geo.size.width / 7, height: geo.size.width / 7)
+                                }
+                                if (Double(happiness) / Double(maxHappiness) >= 09) {
+                                    if (Double(happiness) / Double(maxHappiness) >= 1) {
+                                        Image("health-lrg")
+                                            .resizable()
+                                            .frame(width: geo.size.width / 7, height: geo.size.width / 7)
+                                    }
+                                    else {
+                                        Image("health-half-lrg")
+                                            .resizable()
+                                            .frame(width: geo.size.width / 7, height: geo.size.width / 7)
+                                    }
+                                }
+                                else {
+                                    Image("health-empty-lrg")
+                                        .resizable()
+                                        .frame(width: geo.size.width / 7, height: geo.size.width / 7)
+                                }
+                            }
+                            .offset(y: -geo.size.height / 15)
+                        }
+                        .offset(y: geo.size.width / geo.size.height > CGFloat(0.59) ? -geo.size.height / 4 : 0)
                     }
-                    .offset(y: -geo.size.height / 1.75)
                     
                     
                 }
