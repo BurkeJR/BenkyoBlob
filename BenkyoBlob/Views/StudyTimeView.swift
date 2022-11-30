@@ -120,7 +120,7 @@ struct StudyTimeView: View {
                             .frame(width: geo.size.width / 10, height: geo.size.width / 10)
                     }
                     Button {
-                        VM.notes.append(Note(id: VM.notes.count, content:"Note \(VM.notes.count)"))
+                        VM.allNotes.notes.append(Note(id: VM.allNotes.notes.count, content:"Note \(VM.allNotes.notes.count)"))
                     } label: {
                         ZStack {
                             Image("note-lrg")
@@ -133,11 +133,12 @@ struct StudyTimeView: View {
                         }
                         
                     }
+                    
                 }
                 
                 ScrollView {
                     VStack {
-                        ForEach(VM.notes) { note in
+                        ForEach(VM.allNotes.notes) { note in
                             ZStack {
                                 Image("note-lrg")
                                     .resizable()
@@ -151,18 +152,30 @@ struct StudyTimeView: View {
                                     FieldView(name: Binding<String>(get: {
                                         note.content
                                     }, set: { newValue in
-                                        VM.notes[note.id].content = newValue
+                                        VM.allNotes.notes[note.id].content = newValue
                                     }))
                                     .frame(width: geo.size.width / 2.5)
+                                    if (editNotes) {
+                                        Button {
+                                            VM.allNotes.deleteNote(note: note)
+                                        } label: {
+                                            Image("delete-icon-lrg")
+                                                .resizable()
+                                                .frame(width: geo.size.width / 10, height: geo.size.width / 10)
+                                        }
+                                        .offset(x: geo.size.width / 3)
+                                    }
                                 }
                                 
                                 
                                 
                             }
+                            .padding(geo.size.width / 7.5)
                             
                         }
                     }
                 }
+                
                 
                 //.offset(x: geo.size.width / 3.25)
             }.navigationBarHidden(true)

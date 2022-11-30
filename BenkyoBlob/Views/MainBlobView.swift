@@ -15,6 +15,23 @@ struct MainBlobView: View {
     @State var maxHappiness = 10
     @State var EXP = 0
     @State var maxEXP = 20
+    @State var isAnimated : Bool = false
+    @State var color = "pink"
+    @State var numFrames = 1
+    @State var stage = 1
+    var mood : String {
+        get {
+            if Double(happiness) / Double(maxHappiness) < 0.4 {
+                return "sad"
+            }
+            else if Double(happiness) / Double(maxHappiness) > 0.4 && Double(happiness) / Double(maxHappiness) < 0.8 {
+                return "normal"
+            }
+            else {
+                return "happy"
+            }
+        }
+    }
     var body: some View {
         NavigationView {
             GeometryReader { geo in
@@ -104,10 +121,16 @@ struct MainBlobView: View {
                         Button {
                             showHealth = !showHealth
                         } label : {
-                            Image("slimepet-01-pink-02-sad-lrg")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .offset(y: geo.size.width / geo.size.height > CGFloat(0.59) ? -geo.size.height / 10: geo.size.height / 16)
+                            if (!isAnimated) {
+                                Image("slimepet-\(color)-\(mood)")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .offset(y: geo.size.width / geo.size.height > CGFloat(0.59) ? -geo.size.height / 10: geo.size.height / 16)
+                            }
+                            else {
+                                
+                            }
+                            
                         }
                         
                         

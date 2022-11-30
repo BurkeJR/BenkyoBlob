@@ -71,6 +71,7 @@ struct CardView: View {
                             }
                         }
                         
+                        
                     }
                     if editCard {
                         VStack {
@@ -103,6 +104,7 @@ struct CardView: View {
                             } else {
                                 cardIndex -= 1
                             }
+                            print("\(cardIndex), \(deck.deck[cardIndex].index)")
                         } label: {
                             Image("prev-button-lrg")
                                 .resizable()
@@ -115,7 +117,7 @@ struct CardView: View {
                                 cardIndex += 1
                             }
                             showAnswer = false
-                            
+                            print("\(cardIndex), \(deck.deck[cardIndex].index)")
                             
                         } label: {
                             Image("next-button-lrg")
@@ -126,19 +128,44 @@ struct CardView: View {
                     
                 }
                 if editCard {
-                    Button {
-                        if selectedDeck != nil {
-                            let newCard = Flashcard(id: UUID(), question: "Question \(DM.allCurrDecks.allDecks[selectedDeck!].deck.count)", answer: "Answer")
-                            DM.allCurrDecks.allDecks[selectedDeck!].deck.insert(newCard, at: cardIndex)
+                    HStack {
+                        Button {
+                            if selectedDeck != nil {
+                                let newCard = Flashcard(id: UUID(), index: cardIndex, question: "Question", answer: "Answer")
+                                DM.allCurrDecks.allDecks[selectedDeck!].addCard(card: newCard)
+                            }
+                            
+                            
+                        } label: {
+                            ZStack {
+                                Image("add-icon-lrg")
+                                    .resizable()
+                                    .foregroundColor(.white)
+                                    .frame(width: geo.size.width / 4, height: geo.size.width / 4)
+                            }
                         }
-                        
-                        
-                    } label: {
-                        ZStack {
-                            Image("add-icon-lrg")
-                                .resizable()
-                                .foregroundColor(.white)
-                                .frame(width: geo.size.width / 4, height: geo.size.width / 4)
+                        if (deck.deck.count > 1) {
+                            Button {
+                                if selectedDeck != nil {
+                                    DM.allCurrDecks.allDecks[selectedDeck!].removeCard(card: DM.allCurrDecks.allDecks[selectedDeck!].deck[cardIndex])
+                                    if (cardIndex < 0) {
+                                        cardIndex = DM.allCurrDecks.allDecks[selectedDeck!].deck.count - 1
+                                    }
+                                    if (cardIndex >= deck.deck.count - 1) {
+                                        cardIndex = 0
+                                    }
+                                }
+                                print("\(cardIndex), \(deck.deck[cardIndex].index)")
+                                
+                                
+                            } label: {
+                                ZStack {
+                                    Image("delete-icon-lrg")
+                                        .resizable()
+                                        .foregroundColor(.white)
+                                        .frame(width: geo.size.width / 4, height: geo.size.width / 4)
+                                }
+                            }
                         }
                     }
                 }
@@ -186,61 +213,64 @@ struct FlashcardsView: View {
                         }
                     ScrollView {
                         ForEach(DM.allCurrDecks.allDecks) { deck in
-                            HStack {
-                                /*if (renameDeckMode) {
-                                    //let id = deck.id
+                            
+                            ZStack {
+                                NavigationLink(tag: deck.id, selection: $selectedDeck) {
+                                    CardView(deck: deck, showAnswer: false, selectedDeck: $selectedDeck)
+                                        .environmentObject(DM)
+                                } label: {
+                                    
+                                    ZStack {
+                                        Image("flashcard-lrg")
+                                            .resizable()
+                                            .frame(width: geo.size.width / 1.5, height: geo.size.height / 8)
+                                        if (!renameDeckMode) {
+                                            Text(deck.name)
+                                                .font(.custom("FFF Forward", size: geo.size.height / 30))
+                                        } else {
+                                            Text("");
+                                        }
+                                        
+                                        
+                                    }
+                                    
+                                    
+                                    
+                                }
+                                
+                                
+                                if renameDeckMode {
+                                    FieldView(name: Binding<String>(get: {
+                                        deck.name
+                                    }, set: { newValue in
+                                        DM.allCurrDecks.allDecks[deck.id].name = newValue
+                                    }))
+                                    .frame(width: geo.size.width / 1.7, height: geo.size.height / 8)
+                                    
                                     Button {
-                                        //DM.allCurrDecks.allDecks.remove(at: id)
+                                        DM.allCurrDecks.removeDeck(deck: deck)
                                     } label: {
                                         Image("delete-icon-lrg")
                                             .resizable()
                                             .frame(width: geo.size.width / 10, height: geo.size.width / 10)
                                     }
-                                }*/
-                                ZStack {
-                                    NavigationLink(tag: deck.id, selection: $selectedDeck) {
-                                        CardView(deck: deck, showAnswer: false, selectedDeck: $selectedDeck)
-                                            .environmentObject(DM)
-                                    } label: {
-                                        
-                                        ZStack {
-                                            Image("flashcard-lrg")
-                                                .resizable()
-                                                .frame(width: geo.size.width / 1.5, height: geo.size.height / 8)
-                                            if (!renameDeckMode) {
-                                                Text(deck.name)
-                                                    .font(.custom("FFF Forward", size: geo.size.height / 30))
-                                            } else {
-                                                Text("");
-                                            }
-                                            
-                                            
-                                        }
-                                        
-                                        
-                                    }
-                                    if renameDeckMode {
-                                        FieldView(name: Binding<String>(get: {
-                                            deck.name
-                                        }, set: { newValue in
-                                            DM.allCurrDecks.allDecks[deck.id].name = newValue
-                                        }))
-                                        .frame(width: geo.size.width / 1.7, height: geo.size.height / 8)
-                                    }
-                                    
-                                    
-                                    
-                                    
-                                    
+                                    .offset(x: geo.size.width / 4)
                                     
                                 }
+                                
+                                
+                                
+                                
+                                
+                                
                             }
+                            
                         }
                     }
                     .offset(y: -geo.size.height / 10)
                     Button {
                         var newDeck = Deck(id: DM.allCurrDecks.allDecks.count, name: "New Deck \(DM.allCurrDecks.allDecks.count)", deck: [Flashcard]())
-                        newDeck.deck.append(Flashcard(id: UUID(), question: "Question 1", answer: "Answer 1"))
+                        newDeck.deck.append(Flashcard(id: UUID(), index: 0, question: "Question 1", answer: "Answer 1"))
                         DM.allCurrDecks.allDecks.append(newDeck)
                         
                     } label: {

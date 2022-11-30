@@ -16,14 +16,15 @@ class ViewModel : ObservableObject {
     
     @Published var quizes = [Quiz]()
     
-    @Published var notes = [Note]()
+    @Published var allNotes = AllNotes(notes: [Note]())
     
     
     
     init() {
-        defaultDeck.deck.append(Flashcard(id: UUID(), question: "Who lives in a pineapple under the sea?", answer: "SPONGEBOB SQUAREPANTS"))
-        defaultDeck.deck.append(Flashcard(id: UUID(), question: "The lead singer of this band went to see a marching band when he was a young boy", answer: "My Chemical Romance"))
-        defaultDeck.deck.append(Flashcard(id:UUID(), question: "Is Ace Attorney accurate?", answer: "No, the point of Ace Attorney is to show that the system is so broken that you have to break all laws and bring back the dead to find the truth."))
+        defaultDeck.addCard(card: Flashcard(id: UUID(), index: 0, question: "Who lives in a pineapple under the sea?", answer: "SPONGEBOB SQUAREPANTS"))
+        defaultDeck.addCard(card: Flashcard(id: UUID(), index: 1, question: "The lead singer of this band went to see a marching band when he was a young boy", answer: "My Chemical Romance"))
+        defaultDeck.addCard(card: Flashcard(id: UUID(), index: 2, question: "Is Ace Attorney accurate?", answer: "No, the point of Ace Attorney is to show that the system is so broken that you have to break all laws and bring back the dead to find the truth."))
+        
         allCurrDecks.allDecks.append(defaultDeck)
         
         var questions = [Question]()
@@ -41,7 +42,7 @@ class ViewModel : ObservableObject {
         allUnlockables.treasure.append(Unlockable(id: 5, name: "", description: ""))
         allUnlockables.treasure.append(Unlockable(id: 6, name: "", description: ""))
         
-        notes.append(Note(id: 0, content: "If you're reading this note, you just lost the game."))
+        allNotes.notes.append(Note(id: 0, content: "If you're reading this note, you just lost the game."))
     }
     
 }

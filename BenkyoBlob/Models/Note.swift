@@ -7,8 +7,15 @@
 
 import Foundation
 
-struct Notes : Decodable {
+struct AllNotes : Decodable {
     var notes : [Note]
+    mutating func deleteNote(note: Note) {
+        let id = note.id
+        notes.remove(at: id)
+        for i in (id..<notes.count) {
+            notes[i].id -= 1
+        }
+    }
 }
 
 struct Note : Identifiable, Decodable {
