@@ -12,11 +12,13 @@ class ViewModel : ObservableObject {
     @Published var allCurrDecks = AllDecks(allDecks: [Deck]())
     @Published var defaultDeck = Deck(id: 0, name: "Pop Culture", deck: [Flashcard]())
     
-    @Published var allUnlockables = AllUnlockables(treasure: [Unlockable]())
+    @Published var allUnlockables = AllUnlockables()
     
     @Published var quizes = [Quiz]()
     
     @Published var allNotes = AllNotes(notes: [Note]())
+    
+    @Published var pet = Blob(happiness: 0, maxHappiness: 10, EXP: 0, maxEXP: 10, starter: "slimepet-pink", mood: "sad", level: 1)
     
     
     
@@ -34,13 +36,13 @@ class ViewModel : ObservableObject {
         
         quizes.append(Quiz(id: 1, name: "Sample Quiz", questions: questions))
         
-        allUnlockables.treasure.append(Unlockable(id: 0, name: "Takoyaki", description: "Takoyaki is a delicious Japanese dish that is basically described as deep-fried octopus pieces drizzled with a savory sauce and often topped with seaweed flakes and dried fish flakes."))
-        allUnlockables.treasure.append(Unlockable(id: 1, name: "Sushi", description: "Sushi, while a great dish, isn't for everyone.  People either love or hate sushi, but it depends on what kind you try."))
-        allUnlockables.treasure.append(Unlockable(id: 2, name: "Egg", description: "You can never go wrong with eggs.  Eggs can be cooked in so many different ways!"))
-        allUnlockables.treasure.append(Unlockable(id: 3, name: "", description: ""))
-        allUnlockables.treasure.append(Unlockable(id: 4, name: "", description: ""))
-        allUnlockables.treasure.append(Unlockable(id: 5, name: "", description: ""))
-        allUnlockables.treasure.append(Unlockable(id: 6, name: "", description: ""))
+//        allUnlockables.treasure.append(Unlockable(id: 0, name: "Takoyaki", description: "Takoyaki is a delicious Japanese dish that is basically described as deep-fried octopus pieces drizzled with a savory sauce and often topped with seaweed flakes and dried fish flakes."))
+//        allUnlockables.treasure.append(Unlockable(id: 1, name: "Sushi", description: "Sushi, while a great dish, isn't for everyone.  People either love or hate sushi, but it depends on what kind you try."))
+//        allUnlockables.treasure.append(Unlockable(id: 2, name: "Egg", description: "You can never go wrong with eggs.  Eggs can be cooked in so many different ways!"))
+//        allUnlockables.treasure.append(Unlockable(id: 3, name: "", description: ""))
+//        allUnlockables.treasure.append(Unlockable(id: 4, name: "", description: ""))
+//        allUnlockables.treasure.append(Unlockable(id: 5, name: "", description: ""))
+//        allUnlockables.treasure.append(Unlockable(id: 6, name: "", description: ""))
         
         allNotes.notes.append(Note(id: 0, content: "If you're reading this note, you just lost the game."))
     }

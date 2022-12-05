@@ -30,54 +30,86 @@ struct UnlockablesView: View {
                             ForEach(VM.allUnlockables.treasure) { item in
                                 VStack {
                                     if (item.id % 4 == 0) {
-                                        Image("collectibles-box-lrg")
-                                            .resizable()
-                                            .frame(width: 50, height: 50)
-                                            .padding()
+                                        ZStack {
+                                            Image("collectibles-box-lrg")
+                                                .resizable()
+                                                .frame(width: 50, height: 50)
+                                                .padding()
+                                            if (item.isUnlocked) {
+                                                Image(item.sprite)
+                                                    .resizable()
+                                                    .frame(width: 30, height: 30)
+                                            }
+                                        }
                                     }
                                 }
                                 
                             }
+                            Spacer()
                             
                         }
                         VStack {
                             ForEach(VM.allUnlockables.treasure) { item in
                                 VStack {
                                     if (item.id % 4 == 1) {
-                                        Image("collectibles-box-lrg")
-                                            .resizable()
-                                            .frame(width: 50, height: 50)
-                                            .padding()
+                                        ZStack {
+                                            Image("collectibles-box-lrg")
+                                                .resizable()
+                                                .frame(width: 50, height: 50)
+                                                .padding()
+                                            if (item.isUnlocked) {
+                                                Image(item.sprite)
+                                                    .resizable()
+                                                    .frame(width: 30, height: 30)
+                                            }
+                                        }
                                     }
                                 }
                                 
                             }
+                            Spacer()
                         }
                         VStack {
                             ForEach(VM.allUnlockables.treasure) { item in
                                 VStack {
                                     if (item.id % 4 == 2) {
-                                        Image("collectibles-box-lrg")
-                                            .resizable()
-                                            .frame(width: 50, height: 50)
-                                            .padding()
+                                        ZStack {
+                                            Image("collectibles-box-lrg")
+                                                .resizable()
+                                                .frame(width: 50, height: 50)
+                                                .padding()
+                                            if (item.isUnlocked) {
+                                                Image(item.sprite)
+                                                    .resizable()
+                                                    .frame(width: 30, height: 30)
+                                            }
+                                        }
                                     }
                                 }
                                 
                             }
+                            Spacer()
                         }
                         VStack {
                             ForEach(VM.allUnlockables.treasure) { item in
                                 VStack {
                                     if (item.id % 4 == 3) {
-                                        Image("collectibles-box-lrg")
-                                            .resizable()
-                                            .frame(width: 50, height: 50)
-                                            .padding()
+                                        ZStack {
+                                            Image("collectibles-box-lrg")
+                                                .resizable()
+                                                .frame(width: 50, height: 50)
+                                                .padding()
+                                            if (item.isUnlocked) {
+                                                Image(item.sprite)
+                                                    .resizable()
+                                                    .frame(width: 30, height: 30)
+                                            }
+                                        }
                                     }
                                 }
                                 
                             }
+                            Spacer()
                         }
                         
                     }
