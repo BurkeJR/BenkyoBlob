@@ -27,22 +27,23 @@ class ViewModel : ObservableObject {
     
     
     init() {
-        defaultDeck.addCard(card: Flashcard(id: UUID(), index: 0, question: "Who lives in a pineapple under the sea?", answer: "SPONGEBOB SQUAREPANTS"))
-        defaultDeck.addCard(card: Flashcard(id: UUID(), index: 1, question: "The lead singer of this band went to see a marching band when he was a young boy", answer: "My Chemical Romance"))
-        defaultDeck.addCard(card: Flashcard(id: UUID(), index: 2, question: "Is Ace Attorney accurate?", answer: "No, the point of Ace Attorney is to show that the system is so broken that you have to break all laws and bring back the dead to find the truth."))
+//        defaultDeck.addCard(card: Flashcard(id: UUID(), index: 0, question: "Who lives in a pineapple under the sea?", answer: "SPONGEBOB SQUAREPANTS"))
+//        defaultDeck.addCard(card: Flashcard(id: UUID(), index: 1, question: "The lead singer of this band went to see a marching band when he was a young boy", answer: "My Chemical Romance"))
+//        defaultDeck.addCard(card: Flashcard(id: UUID(), index: 2, question: "Is Ace Attorney accurate?", answer: "No, the point of Ace Attorney is to show that the system is so broken that you have to break all laws and bring back the dead to find the truth."))
+//
+        //allCurrDecks.allDecks.append(defaultDeck)
         
-        allCurrDecks.allDecks.append(defaultDeck)
+//        var questions = [Question]()
+//
+//        questions.append(Question(id: UUID(), index: 0, question: "Is this a question?", choices: ["Yes", "No"], answer: 0))
+//        questions.append(Question(id: UUID(), index: 1, question: "Is the cake a lie?", choices: ["Yes", "No"], answer: 0))
+//        questions.append(Question(id: UUID(), index: 2, question: "True or False: This sentence is a lie.", choices: ["True", "False", "OK"], answer: 2))
+//
+//        quizes.append(Quiz(id: 0, name: "Sample Quiz", questions: questions))
         
-        var questions = [Question]()
-        let yesNoChoices = [Choice(id: UUID(), index: 0, text: "Yes"), Choice(id: UUID(), index: 1, text: "No")]
-        let otherChoices = [Choice(id: UUID(), index: 0, text: "True"), Choice(id: UUID(), index: 1, text: "False"),
-        Choice(id: UUID(), index: 2, text: "OK")]
+        readJSON()
         
-        questions.append(Question(id: UUID(), index: 0, question: "Is this a question?", choices: ["Yes", "No"], answer: 0))
-        questions.append(Question(id: UUID(), index: 1, question: "Is the cake a lie?", choices: ["Yes", "No"], answer: 0))
-        questions.append(Question(id: UUID(), index: 2, question: "True or False: This sentence is a lie.", choices: ["True", "False", "OK"], answer: 2))
         
-        quizes.append(Quiz(id: 0, name: "Sample Quiz", questions: questions))
         
 //        allUnlockables.treasure.append(Unlockable(id: 0, name: "Takoyaki", description: "Takoyaki is a delicious Japanese dish that is basically described as deep-fried octopus pieces drizzled with a savory sauce and often topped with seaweed flakes and dried fish flakes."))
 //        allUnlockables.treasure.append(Unlockable(id: 1, name: "Sushi", description: "Sushi, while a great dish, isn't for everyone.  People either love or hate sushi, but it depends on what kind you try."))
@@ -62,6 +63,47 @@ class ViewModel : ObservableObject {
         
     }
     
+    func readJSON() {
+        // 1. get the path to the file
+        let pathName = Bundle.main.path(forResource: "benkyo", ofType: "json")
+        
+        // is an optional variable, so we have to check if it actually found the file
+        if let path = pathName {
+            // 2. create url object
+            let url = URL(fileURLWithPath: path)
+            
+            do {
+                // 3. fetch the data
+                let data = try Data(contentsOf: url)
+                
+                // 4. create a json decoder
+                let json_decoder = JSONDecoder()
+                
+                // 5. extract the data
+                let json_data = try json_decoder.decode(AllData.self, from: data)
+                
+                for var quiz in json_data.quizes {
+                    for index in 0..<quiz.questions.count {
+                        quiz.questions[index].id = UUID()
+                    }
+                }
+                
+                for var deck in json_data.allDecks {
+                    for index in 0..<deck.deck.count {
+                        deck.deck[index].id = UUID()
+                    }
+                }
+                
+                quizes = json_data.quizes
+                allCurrDecks.allDecks = json_data.allDecks
+                //allNotes = json_data.allNotes
+                //pet = json_data.pet
+                
+            } catch {
+                print(error)
+            }
+        }
+    }
     
     
 }
