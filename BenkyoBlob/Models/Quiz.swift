@@ -35,15 +35,12 @@ struct Quiz: Decodable, Identifiable {
 }
 
 struct Question: Decodable, Identifiable {
-    var id: UUID
+    var id: UUID?
     var index: Int
     var question: String
     var choices: [String]
     var answer: Int
+    
+    
 }
 
-struct Choice: Decodable, Identifiable {
-    var id: UUID
-    var index: Int
-    var text: String
-}

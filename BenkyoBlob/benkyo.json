@@ -1,0 +1,38 @@
+{
+    "quizes": [
+        {
+            "id": 0,
+            "name": "Quiz 1",
+            "questions": [
+                {
+                    "index": 0,
+                    "question": "Is this a question?",
+                    "choices": [
+                        "Yes",
+                        "No"
+                    ],
+                    "answer": 0
+                },
+                {
+                    "index": 1,
+                    "question": "Is the cake a lie?",
+                    "choices": [
+                        "Yes",
+                        "No"
+                    ],
+                    "answer": 0
+                },
+                {
+                    "index": 2,
+                    "question": "This sentence is a lie.",
+                    "choices": [
+                        "True",
+                        "False",
+                        "OK"
+                    ],
+                    "answer": 2
+                }
+            ]
+        }
+    ]
+}

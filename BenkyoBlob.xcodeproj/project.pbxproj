@@ -25,6 +25,8 @@
 		D46CAC292922F891001D9D24 /* QuizesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46CAC282922F891001D9D24 /* QuizesView.swift */; };
 		D46CAC2B2922F8F4001D9D24 /* Quiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46CAC2A2922F8F4001D9D24 /* Quiz.swift */; };
 		D46CAC2D292475F7001D9D24 /* TheCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46CAC2C292475F7001D9D24 /* TheCalendarView.swift */; };
+		D495815529428C4D00BA350C /* AllData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D495815429428C4D00BA350C /* AllData.swift */; };
+		D495815729428E0F00BA350C /* benkyo.json in Resources */ = {isa = PBXBuildFile; fileRef = D495815629428E0F00BA350C /* benkyo.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +50,8 @@
 		D46CAC282922F891001D9D24 /* QuizesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizesView.swift; sourceTree = "<group>"; };
 		D46CAC2A2922F8F4001D9D24 /* Quiz.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quiz.swift; sourceTree = "<group>"; };
 		D46CAC2C292475F7001D9D24 /* TheCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheCalendarView.swift; sourceTree = "<group>"; };
+		D495815429428C4D00BA350C /* AllData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllData.swift; sourceTree = "<group>"; };
+		D495815629428E0F00BA350C /* benkyo.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = benkyo.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +92,7 @@
 				D40C711829217A0C00E49F63 /* BenkyoBlobApp.swift */,
 				D40C711C29217A1200E49F63 /* Assets.xcassets */,
 				D40C711E29217A1200E49F63 /* Preview Content */,
+				D495815629428E0F00BA350C /* benkyo.json */,
 			);
 			path = BenkyoBlob;
 			sourceTree = "<group>";
@@ -131,6 +136,7 @@
 				D46CAC2A2922F8F4001D9D24 /* Quiz.swift */,
 				05E7528C2923370B003D2107 /* Note.swift */,
 				0540C2D2293661730002595F /* Blob.swift */,
+				D495815429428C4D00BA350C /* AllData.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -196,6 +202,7 @@
 				D40C712029217A1200E49F63 /* Preview Assets.xcassets in Resources */,
 				D40C711D29217A1200E49F63 /* Assets.xcassets in Resources */,
 				05E060372921C22D00CAEA68 /* FFFFORWA.TTF in Resources */,
+				D495815729428E0F00BA350C /* benkyo.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -217,6 +224,7 @@
 				D40C711B29217A0C00E49F63 /* ContentView.swift in Sources */,
 				D46CAC2D292475F7001D9D24 /* TheCalendarView.swift in Sources */,
 				D46CAC292922F891001D9D24 /* QuizesView.swift in Sources */,
+				D495815529428C4D00BA350C /* AllData.swift in Sources */,
 				05E752872922DED9003D2107 /* StudyTimeView.swift in Sources */,
 				D40C711929217A0C00E49F63 /* BenkyoBlobApp.swift in Sources */,
 				D46CAC2B2922F8F4001D9D24 /* Quiz.swift in Sources */,
