@@ -43,7 +43,9 @@ struct EditQuizView: View {
                     ForEach(quiz.questions) { question in
                         
                         HStack {
+                            // question label
                             Text("Question:")
+                            // remove question button
                             Button {
                                 // remove question
                                 VM.quizes[quiz.id].removeQuestion(question: question)
@@ -51,24 +53,52 @@ struct EditQuizView: View {
                                 Image("delete-icon-lrg")
                                     .resizable()
                                     .frame(width: geo.size.width / 10, height: geo.size.width / 10)
-                            }.offset(x: geo.size.width / 2)
+                            }.offset(x: geo.size.width / 2.2)
                         }
+                        // edit question
                         FieldView(name: Binding<String>(get: {
                             question.question
                         }, set: { newValue in
                             VM.quizes[quiz.id].questions[question.index].question = newValue
                         }))
                         
-                        Text("Answers:")
+                        HStack {
+                            // answers label
+                            Text("Answers:")
+                            // add answer button
+                            Button {
+                                VM.quizes[quiz.id].questions[question.index].choices.append("New Answer")
+                            } label: {
+                                Image("add-icon-lrg")
+                                    .resizable()
+                                    .frame(width: geo.size.width / 10, height: geo.size.width / 10)
+                            }.offset(x: geo.size.width / 2.2)
+                        }.padding(.top)
+                        
+                        // edit answers
                         ForEach(Array(zip(question.choices.indices, question.choices)), id: \.1) { index, choice in
-                            FieldView(name: Binding<String>(get: {
-                                choice
-                            }, set: { newValue in
-                                VM.quizes[quiz.id].questions[question.index].choices[index] = newValue
-                            }))
+                            HStack {
+                                // answer edit box
+                                FieldView(name: Binding<String>(get: {
+                                    choice
+                                }, set: { newValue in
+                                    VM.quizes[quiz.id].questions[question.index].choices[index] = newValue
+                                }))
+                                // answer remove button
+                                Button {
+                                    // remove answer
+                                    VM.quizes[quiz.id].questions[question.index].choices.remove(at: index)
+                                } label: {
+                                    Image("delete-icon-lrg")
+                                        .resizable()
+                                        .frame(width: geo.size.width / 10, height: geo.size.width / 10)
+                                }
+                            }
                         }
                         
+                        // correct answer
                         Text("Correct Answer (the number it is in the list of choices)")
+                            .padding(.top)
                         FieldView(name: Binding<String>(get: {
                             String(question.answer)
                         }, set: { newValue in
@@ -80,19 +110,6 @@ struct EditQuizView: View {
                             .overlay(.pink)
                     }
                 }
-                
-                // list of questions
-                    // remove question
-                
-                
-                // question
-                
-                // question choices
-                
-                // answer
-                // tell the user to enter the number of the choice that is the correct answer, then make sure to decrement what they enter so that it is 0 indexed
-                
-                
             }
         }.navigationBarHidden(true)
     }
