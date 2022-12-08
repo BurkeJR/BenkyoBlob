@@ -44,7 +44,7 @@ struct Deck : Decodable, Identifiable {
 }
 
 struct Flashcard : Identifiable, Decodable {
-    var id : UUID
+    var id : UUID?
     var index : Int
     var question : String
     var answer : String

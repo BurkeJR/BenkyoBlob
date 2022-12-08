@@ -23,11 +23,11 @@ class ViewModel : ObservableObject {
     
     
     init() {
-        defaultDeck.addCard(card: Flashcard(id: UUID(), index: 0, question: "Who lives in a pineapple under the sea?", answer: "SPONGEBOB SQUAREPANTS"))
-        defaultDeck.addCard(card: Flashcard(id: UUID(), index: 1, question: "The lead singer of this band went to see a marching band when he was a young boy", answer: "My Chemical Romance"))
-        defaultDeck.addCard(card: Flashcard(id: UUID(), index: 2, question: "Is Ace Attorney accurate?", answer: "No, the point of Ace Attorney is to show that the system is so broken that you have to break all laws and bring back the dead to find the truth."))
-        
-        allCurrDecks.allDecks.append(defaultDeck)
+//        defaultDeck.addCard(card: Flashcard(id: UUID(), index: 0, question: "Who lives in a pineapple under the sea?", answer: "SPONGEBOB SQUAREPANTS"))
+//        defaultDeck.addCard(card: Flashcard(id: UUID(), index: 1, question: "The lead singer of this band went to see a marching band when he was a young boy", answer: "My Chemical Romance"))
+//        defaultDeck.addCard(card: Flashcard(id: UUID(), index: 2, question: "Is Ace Attorney accurate?", answer: "No, the point of Ace Attorney is to show that the system is so broken that you have to break all laws and bring back the dead to find the truth."))
+//
+        //allCurrDecks.allDecks.append(defaultDeck)
         
 //        var questions = [Question]()
 //
@@ -69,7 +69,7 @@ class ViewModel : ObservableObject {
                 let json_decoder = JSONDecoder()
                 
                 // 5. extract the data
-                var json_data = try json_decoder.decode(AllData.self, from: data)
+                let json_data = try json_decoder.decode(AllData.self, from: data)
                 
                 for var quiz in json_data.quizes {
                     for index in 0..<quiz.questions.count {
@@ -77,10 +77,14 @@ class ViewModel : ObservableObject {
                     }
                 }
                 
-
+                for var deck in json_data.allDecks {
+                    for index in 0..<deck.deck.count {
+                        deck.deck[index].id = UUID()
+                    }
+                }
                 
                 quizes = json_data.quizes
-                //allCurrDecks = json_data.allDecks
+                allCurrDecks.allDecks = json_data.allDecks
                 //allNotes = json_data.allNotes
                 //pet = json_data.pet
                 

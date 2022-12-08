@@ -10,7 +10,7 @@ import Foundation
 
 struct AllData: Decodable {
     var quizes: [Quiz]
-//    var allDecks: AllDecks
+    var allDecks: [Deck]
 //    var allNotes: AllNotes
 //    var pet: Blob
 }
