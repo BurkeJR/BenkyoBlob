@@ -30,11 +30,15 @@ class ViewModel : ObservableObject {
         allCurrDecks.allDecks.append(defaultDeck)
         
         var questions = [Question]()
-        questions.append(Question(id: 1, question: "Is this a question?", choices: ["Yes", "No"], answer: 0))
-        questions.append(Question(id: 2, question: "Is the cake a lie?", choices: ["Yes", "No"], answer: 0))
-        questions.append(Question(id: 3, question: "True or False: This sentence is a lie.", choices: ["True", "False", "OK"], answer: 2))
+        let yesNoChoices = [Choice(id: UUID(), index: 0, text: "Yes"), Choice(id: UUID(), index: 1, text: "No")]
+        let otherChoices = [Choice(id: UUID(), index: 0, text: "True"), Choice(id: UUID(), index: 1, text: "False"),
+        Choice(id: UUID(), index: 2, text: "OK")]
         
-        quizes.append(Quiz(id: 1, name: "Sample Quiz", questions: questions))
+        questions.append(Question(id: UUID(), index: 0, question: "Is this a question?", choices: ["Yes", "No"], answer: 0))
+        questions.append(Question(id: UUID(), index: 1, question: "Is the cake a lie?", choices: ["Yes", "No"], answer: 0))
+        questions.append(Question(id: UUID(), index: 2, question: "True or False: This sentence is a lie.", choices: ["True", "False", "OK"], answer: 2))
+        
+        quizes.append(Quiz(id: 0, name: "Sample Quiz", questions: questions))
         
 //        allUnlockables.treasure.append(Unlockable(id: 0, name: "Takoyaki", description: "Takoyaki is a delicious Japanese dish that is basically described as deep-fried octopus pieces drizzled with a savory sauce and often topped with seaweed flakes and dried fish flakes."))
 //        allUnlockables.treasure.append(Unlockable(id: 1, name: "Sushi", description: "Sushi, while a great dish, isn't for everyone.  People either love or hate sushi, but it depends on what kind you try."))
