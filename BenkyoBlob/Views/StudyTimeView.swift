@@ -42,6 +42,11 @@ struct StudyTimeView: View {
     @Binding var modeSelect : Int?
     @State var outsideStudyHours : Int = 0
     @State var unnamedNoteNumber = 0
+    @State var randomizer : Int = 0
+    @State var collectibleRandomizer : Int?
+    @State var showItem : Bool = false
+    @State var clickText : String = ""
+    
     @EnvironmentObject var VM : ViewModel
     var formattedString : String {
         let total_seconds = TM.tenMilliseconds / 100
@@ -132,6 +137,11 @@ struct StudyTimeView: View {
                     Button {
                         VM.allNotes.notes.append(Note(id: VM.allNotes.notes.count, content:"Note \(unnamedNoteNumber)"))
                         unnamedNoteNumber += 1
+                        randomizer = Int.random(in: 0...1000)
+                        showItem = true
+                        collectibleRandomizer = Int.random(in: 0..<VM.allUnlockables.treasure.count)
+                        clickText = ""
+                        
                     } label: {
                         ZStack {
                             Image("note-lrg")
@@ -215,6 +225,43 @@ struct StudyTimeView: View {
                     }
                 }
                 
+                if (showItem) {
+                    if (randomizer % 10 == 0) {
+                        Button {
+                            showItem = false
+                            VM.pet.incrementHappiness()
+                            clickText = "+1 Happiness"
+                        } label: {
+                            Image("health-lrg")
+                                .resizable()
+                                .frame(width: geo.size.width / 8, height: geo.size.width / 8)
+                        }
+                    }
+                    if (randomizer % 17 == 0 && randomizer % 10 != 0) {
+                        Button {
+                            showItem = false
+                            VM.pet.setEXP(gainedEXP: 10)
+                            clickText = "+10 EXP"
+                        } label: {
+                            Image("exp-star")
+                                .resizable()
+                                .frame(width: geo.size.width / 8, height: geo.size.width / 8)
+                        }
+                    }
+                    if (randomizer % 9 == 0 && randomizer % 10 != 0 && randomizer % 17 != 0 && !VM.allUnlockables.treasure[collectibleRandomizer!].isUnlocked) {
+                        Button {
+                            showItem = false
+                            VM.allUnlockables.treasure[collectibleRandomizer!].isUnlocked = true
+                            clickText = "Unlocked \(VM.allUnlockables.treasure[collectibleRandomizer!].name)"
+                        } label: {
+                            Image(VM.allUnlockables.treasure[collectibleRandomizer!].sprite)
+                                .resizable()
+                                .frame(width: geo.size.width / 8, height: geo.size.width / 8)
+                        }
+                    }
+                }
+                Text(clickText)
+                    .font(.custom("FFF Forward", size: geo.size.height / 45))
                 
                 //.offset(x: geo.size.width / 3.25)
             }.navigationBarHidden(true)
