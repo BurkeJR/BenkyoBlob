@@ -155,12 +155,10 @@ struct CardView: View {
                                 
                                 
                             } label: {
-                                ZStack {
-                                    Image("add-icon-lrg")
-                                        .resizable()
-                                        .foregroundColor(.white)
-                                        .frame(width: geo.size.width / 4, height: geo.size.width / 4)
-                                }
+                                Image("add-icon-lrg")
+                                    .resizable()
+                                    .foregroundColor(.white)
+                                    .frame(width: geo.size.width / 4, height: geo.size.width / 4)
                             }
                             Button {
                                 if selectedDeck != nil {
@@ -202,12 +200,10 @@ struct CardView: View {
                             
                             
                         } label: {
-                            ZStack {
-                                Image("add-icon-lrg")
-                                    .resizable()
-                                    .foregroundColor(.white)
-                                    .frame(width: geo.size.width / 4, height: geo.size.width / 4)
-                            }
+                            Image("add-icon-lrg")
+                                .resizable()
+                                .foregroundColor(.white)
+                                .frame(width: geo.size.width / 4, height: geo.size.width / 4)
                         }
                     }
                     .navigationBarHidden(true)

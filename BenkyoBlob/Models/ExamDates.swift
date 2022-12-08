@@ -20,8 +20,13 @@ struct ExamDate : Identifiable, Decodable {
             let dateFormatter = DateFormatter()
             dateFormatter.timeZone = .current
             dateFormatter.timeZone = .current
-            dateFormatter.dateFormat = "MMM d, YYYY h:mm a"
+            dateFormatter.dateFormat = "MMM d, YYYY"
             return dateFormatter.string(from: date)
         }
     }
+    
+    func equals(examDate : ExamDate) -> Bool{
+        return examDate.id == id && examDate.date == date && examDate.title == title
+    }
+    
 }
