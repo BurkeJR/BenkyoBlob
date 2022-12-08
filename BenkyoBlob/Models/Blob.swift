@@ -66,15 +66,14 @@ struct Blob : Decodable {
     }
     
     mutating func setEXP(gainedEXP: Int) {
-        var exp = gainedEXP + EXP
-        if (gainedEXP > maxEXP) {
-            exp = gainedEXP - maxEXP
+        if (gainedEXP >= maxEXP) {
+            let exp = gainedEXP - maxEXP
             onLevelUp()
             setEXP(gainedEXP: exp)
         }
         else {
-            EXP = exp
-            if (EXP > maxEXP) {
+            EXP += gainedEXP
+            if (EXP >= maxEXP) {
                 setEXP(gainedEXP: EXP)
             }
         }

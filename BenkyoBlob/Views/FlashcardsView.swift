@@ -14,6 +14,9 @@ struct CardView: View {
     @State var cardIndex = 0;
     @State var editCard : Bool = false
     @State var randomizer : Int = 0
+    @State var collectibleRandomizer : Int?
+    @State var showItem : Bool = false
+    @State var clickText : String = ""
     @Binding var selectedDeck : Int?
     @EnvironmentObject var DM : ViewModel
     
@@ -47,6 +50,9 @@ struct CardView: View {
                     ZStack {
                         Button {
                             showAnswer = !showAnswer
+                            randomizer = Int.random(in: 0...1000)
+                            showItem = true
+                            collectibleRandomizer = Int.random(in: 0..<DM.allUnlockables.treasure.count)
                         } label: {
                             ZStack {
                                 Image("flashcard-lrg")
@@ -106,6 +112,9 @@ struct CardView: View {
                                     cardIndex -= 1
                                 }
                                 randomizer = Int.random(in: 0...1000)
+                                showItem = true
+                                collectibleRandomizer = Int.random(in: 0..<DM.allUnlockables.treasure.count)
+                                clickText = ""
                                 
                             } label: {
                                 Image("prev-button-lrg")
@@ -120,6 +129,9 @@ struct CardView: View {
                                 }
                                 showAnswer = false
                                 randomizer = Int.random(in: 0...1000)
+                                showItem = true
+                                collectibleRandomizer = Int.random(in: 0..<DM.allUnlockables.treasure.count)
+                                clickText = ""
                                 
                             } label: {
                                 Image("next-button-lrg")
@@ -135,6 +147,10 @@ struct CardView: View {
                                 if selectedDeck != nil {
                                     let newCard = Flashcard(id: UUID(), index: cardIndex, question: "Question", answer: "Answer")
                                     DM.allCurrDecks.allDecks[selectedDeck!].addCard(card: newCard)
+                                    randomizer = Int.random(in: 0...1000)
+                                    showItem = true
+                                    collectibleRandomizer = Int.random(in: 0..<DM.allUnlockables.treasure.count)
+                                    clickText = ""
                                 }
                                 
                                 
@@ -180,6 +196,9 @@ struct CardView: View {
                                 let newCard = Flashcard(id: UUID(), index: cardIndex, question: "Question", answer: "Answer")
                                 DM.allCurrDecks.allDecks[selectedDeck!].addCard(card: newCard)
                             }
+                            randomizer = Int.random(in: 0...1000)
+                            showItem = true
+                            clickText = ""
                             
                             
                         } label: {
@@ -194,7 +213,46 @@ struct CardView: View {
                     .navigationBarHidden(true)
                     
                 }
+                if (showItem) {
+                    if (randomizer % 10 == 0) {
+                        Button {
+                            showItem = false
+                            DM.pet.incrementHappiness()
+                            clickText = "+1 Happiness"
+                        } label: {
+                            Image("health-lrg")
+                                .resizable()
+                                .frame(width: geo.size.width / 8, height: geo.size.width / 8)
+                        }
+                    }
+                    if (randomizer % 17 == 0 && randomizer % 10 != 0) {
+                        Button {
+                            showItem = false
+                            DM.pet.setEXP(gainedEXP: 10)
+                            clickText = "+10 EXP"
+                        } label: {
+                            Image("exp-star")
+                                .resizable()
+                                .frame(width: geo.size.width / 8, height: geo.size.width / 8)
+                        }
+                    }
+                    if (randomizer % 9 == 0 && randomizer % 10 != 0 && randomizer % 17 != 0 && !DM.allUnlockables.treasure[collectibleRandomizer!].isUnlocked) {
+                        Button {
+                            showItem = false
+                            DM.allUnlockables.treasure[collectibleRandomizer!].isUnlocked = true
+                            clickText = "Unlocked \(DM.allUnlockables.treasure[collectibleRandomizer!].name)"
+                        } label: {
+                            Image(DM.allUnlockables.treasure[collectibleRandomizer!].sprite)
+                                .resizable()
+                                .frame(width: geo.size.width / 8, height: geo.size.width / 8)
+                        }
+                    }
+                }
+                Text(clickText)
+                    .font(.custom("FFF Forward", size: geo.size.height / 45))
+                
             }
+            
         }
     }
     
