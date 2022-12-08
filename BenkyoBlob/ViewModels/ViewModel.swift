@@ -20,6 +20,10 @@ class ViewModel : ObservableObject {
     
     @Published var pet = Blob(happiness: 0, maxHappiness: 10, EXP: 0, maxEXP: 10, starter: "slimepet-pink", level: 1)
     
+    @Published var allExams = AllExams(allExams: [ExamDate]())
+    
+    @Published var usedBefore = false
+    
     
     
     init() {
@@ -48,7 +52,14 @@ class ViewModel : ObservableObject {
 //        allUnlockables.treasure.append(Unlockable(id: 5, name: "", description: ""))
 //        allUnlockables.treasure.append(Unlockable(id: 6, name: "", description: ""))
         
-        allNotes.notes.append(Note(id: 0, content: "If you're reading this note, you just lost the game."))
+        //allNotes.notes.append(Note(id: 0, content: "If you're reading this note, you just lost the game."))
+        
+        allExams.allExams.append(ExamDate(id: UUID(), date: Date(), title: "Computer Architecture Final"))
+        allExams.allExams.append(ExamDate(id: UUID(), date: Date(), title: "Spanish 1 Final"))
+        
+        
+        
+        
     }
     
     

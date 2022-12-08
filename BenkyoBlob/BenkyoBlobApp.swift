@@ -9,10 +9,18 @@ import SwiftUI
 
 @main
 struct BenkyoBlobApp: App {
+    var VM = ViewModel()
     var body: some Scene {
         WindowGroup {
-            MainBlobView()
-                .environmentObject(ViewModel())
+            if (VM.usedBefore) {
+                MainBlobView()
+                    .environmentObject(ViewModel())
+            }
+            else {
+                SelectBlobView()
+                    .environmentObject(ViewModel())
+            }
+            
         }
     }
 }
