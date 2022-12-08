@@ -92,7 +92,7 @@ struct SelectBlobView: View {
                         }
                     }
                 }
-                .offset(y: geo.size.height / 5)
+                .offset(x: geo.size.width / 10, y: geo.size.height / 5)
                 
                 
             }.navigationBarHidden(true)

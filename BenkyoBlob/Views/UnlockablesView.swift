@@ -6,6 +6,21 @@
 //
 
 import SwiftUI
+import WebKit
+
+struct MyWebView : UIViewRepresentable{
+    
+    let request : URLRequest
+    
+    func makeUIView(context: Context) -> WKWebView {
+        return WKWebView()
+    }
+    
+    func updateUIView(_ uiView: WKWebView, context: Context) {
+        uiView.load(request)
+    }
+    
+}
 
 struct collectionTableView : View {
     @EnvironmentObject var VM : ViewModel
@@ -26,27 +41,42 @@ struct collectionTableView : View {
                     }
                     else {
                         NavigationLink(tag: item.id, selection: $itemSelect) {
-                            VStack {
-                                Button {
-                                    itemSelect = nil
-                                } label: {
-                                    Image("back-button-lrg")
+                            NavigationView {
+                                VStack {
+                                    Text("")
+                                        .toolbar {
+                                            ToolbarItem(placement: .navigation) {
+                                                Button {
+                                                    itemSelect = nil
+                                                } label: {
+                                                    Image("back-button-lrg")
+                                                        .resizable()
+                                                        .frame(width: geo.size.width / 10, height: geo.size.width / 10)
+                                                        .padding()
+                                                }
+                                            }
+                                        }
+                                        
+                                    //.offset(x: -geo.size.width / 2.5)
+                                    Image(item.sprite)
                                         .resizable()
-                                        .frame(width: geo.size.width / 10, height: geo.size.width / 10)
+                                        .aspectRatio(contentMode: .fit)
                                         .padding()
-                                }
-                                .offset(x: -geo.size.width / 2.5)
-                                Image(item.sprite)
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .padding()
-                                ScrollView {
-                                    Text(item.name)
-                                        .font(.custom("FFF Forward", size: 25))
-                                    Text(item.description)
-                                        .font(.custom("FFF Forward", size: 15))
-                                        .multilineTextAlignment(.leading)
-                                        .padding()
+                                    ScrollView {
+                                        Text(item.name)
+                                            .font(.custom("FFF Forward", size: geo.size.width / 15))
+                                        Text(item.description)
+                                            .font(.custom("FFF Forward", size: geo.size.width / 25))
+                                            .multilineTextAlignment(.leading)
+                                            .padding()
+                                        NavigationLink {
+                                            let url_add = URL(string: item.urlInfo)
+                                            MyWebView(request: URLRequest(url: url_add!))
+                                        } label: {
+                                            Text(item.clickPrompt)
+                                                .font(.custom("FFF Forward", size: geo.size.width / 25))
+                                        }
+                                    }
                                 }
                             }
                             .navigationBarHidden(true)

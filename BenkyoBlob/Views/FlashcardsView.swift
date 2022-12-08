@@ -13,6 +13,7 @@ struct CardView: View {
     @State var showAnswer : Bool
     @State var cardIndex = 0;
     @State var editCard : Bool = false
+    @State var randomizer : Int = 0
     @Binding var selectedDeck : Int?
     @EnvironmentObject var DM : ViewModel
     
@@ -40,96 +41,141 @@ struct CardView: View {
                     //.offset(y: -geo.size.height / 3.5)
                     
                 }
-                
-                Text(deck.name)
-                    .font(.custom("FFF Forward", size: 20))
-                ZStack {
-                    Button {
-                        showAnswer = !showAnswer
-                    } label: {
-                        ZStack {
-                            Image("flashcard-lrg")
-                                .resizable()
-                                .frame(width: geo.size.width / 1.1, height: geo.size.height / 4)
-                                .border(.black)
-                                .foregroundColor(.white)
-                            if (!editCard) {
-                                if (!showAnswer) {
-                                    Text(deck.deck[cardIndex].question)
-                                        .frame(width: geo.size.width / 1.3, height: geo.size.height / 5)
-                                        .font(.custom("FFF Forward", size: geo.size.height / 45))
+                if deck.deck.count > 0 {
+                    Text(deck.name)
+                        .font(.custom("FFF Forward", size: 20))
+                    ZStack {
+                        Button {
+                            showAnswer = !showAnswer
+                        } label: {
+                            ZStack {
+                                Image("flashcard-lrg")
+                                    .resizable()
+                                    .frame(width: geo.size.width / 1.1, height: geo.size.height / 4)
+                                    .border(.black)
+                                    .foregroundColor(.white)
+                                if (!editCard) {
+                                    if (!showAnswer) {
+                                        Text(deck.deck[cardIndex].question)
+                                            .frame(width: geo.size.width / 1.3, height: geo.size.height / 5)
+                                            .font(.custom("FFF Forward", size: geo.size.height / 45))
+                                    }
+                                    else {
+                                        Text(deck.deck[cardIndex].answer)
+                                            .frame(width: geo.size.width / 1.3, height: geo.size.height / 5)
+                                            .font(.custom("FFF Forward", size: geo.size.height / 45))
+                                    }
+                                    
                                 }
                                 else {
-                                    Text(deck.deck[cardIndex].answer)
-                                        .frame(width: geo.size.width / 1.3, height: geo.size.height / 5)
-                                        .font(.custom("FFF Forward", size: geo.size.height / 45))
+                                    Text("")
                                 }
+                            }
+                            
+                            
+                        }
+                        if editCard {
+                            VStack {
+                                
+                                FieldView(name: Binding<String>(get: {
+                                    deck.deck[cardIndex].question
+                                }, set: { newValue in
+                                    DM.allCurrDecks.allDecks[deck.id].deck[cardIndex].question = newValue
+                                }))
+                                .frame(width: geo.size.width / 1.3, height: geo.size.height / 8)
+                                
+                                FieldView(name: Binding<String>(get: {
+                                    deck.deck[cardIndex].answer
+                                }, set: { newValue in
+                                    DM.allCurrDecks.allDecks[deck.id].deck[cardIndex].answer = newValue
+                                }))
+                                .frame(width: geo.size.width / 1.3, height: geo.size.height / 8)
                                 
                             }
-                            else {
-                                Text("")
-                            }
+                            
                         }
                         
+                    }
+                    .navigationBarHidden(true)
+                    if (deck.deck.count > 1) {
+                        HStack {
+                            Button {
+                                if (cardIndex <= 0) {
+                                    cardIndex = deck.deck.count - 1
+                                } else {
+                                    cardIndex -= 1
+                                }
+                                randomizer = Int.random(in: 0...1000)
+                                
+                            } label: {
+                                Image("prev-button-lrg")
+                                    .resizable()
+                                    .frame(width: geo.size.width / 10, height: geo.size.width / 10)
+                            }
+                            Button {
+                                if (cardIndex >= deck.deck.count - 1) {
+                                    cardIndex = 0
+                                } else {
+                                    cardIndex += 1
+                                }
+                                showAnswer = false
+                                randomizer = Int.random(in: 0...1000)
+                                
+                            } label: {
+                                Image("next-button-lrg")
+                                    .resizable()
+                                    .frame(width: geo.size.width / 10, height: geo.size.width / 10)
+                            }
+                        }
                         
                     }
                     if editCard {
-                        VStack {
-                            
-                            FieldView(name: Binding<String>(get: {
-                                deck.deck[cardIndex].question
-                            }, set: { newValue in
-                                DM.allCurrDecks.allDecks[deck.id].deck[cardIndex].question = newValue
-                            }))
-                            .frame(width: geo.size.width / 1.3, height: geo.size.height / 8)
-                            
-                            FieldView(name: Binding<String>(get: {
-                                deck.deck[cardIndex].answer
-                            }, set: { newValue in
-                                DM.allCurrDecks.allDecks[deck.id].deck[cardIndex].answer = newValue
-                            }))
-                            .frame(width: geo.size.width / 1.3, height: geo.size.height / 8)
-                            
-                        }
-                        
-                    }
-                    
-                }
-                .navigationBarHidden(true)
-                if (deck.deck.count > 1) {
-                    HStack {
-                        Button {
-                            if (cardIndex <= 0) {
-                                cardIndex = deck.deck.count - 1
-                            } else {
-                                cardIndex -= 1
+                        HStack {
+                            Button {
+                                if selectedDeck != nil {
+                                    let newCard = Flashcard(id: UUID(), index: cardIndex, question: "Question", answer: "Answer")
+                                    DM.allCurrDecks.allDecks[selectedDeck!].addCard(card: newCard)
+                                }
+                                
+                                
+                            } label: {
+                                ZStack {
+                                    Image("add-icon-lrg")
+                                        .resizable()
+                                        .foregroundColor(.white)
+                                        .frame(width: geo.size.width / 4, height: geo.size.width / 4)
+                                }
                             }
-                            print("\(cardIndex), \(deck.deck[cardIndex].index)")
-                        } label: {
-                            Image("prev-button-lrg")
-                                .resizable()
-                                .frame(width: geo.size.width / 10, height: geo.size.width / 10)
-                        }
-                        Button {
-                            if (cardIndex >= deck.deck.count - 1) {
-                                cardIndex = 0
-                            } else {
-                                cardIndex += 1
+                            Button {
+                                if selectedDeck != nil {
+                                    DM.allCurrDecks.allDecks[selectedDeck!].removeCard(card: DM.allCurrDecks.allDecks[selectedDeck!].deck[cardIndex])
+                                    if (cardIndex < 0) {
+                                        cardIndex = DM.allCurrDecks.allDecks[selectedDeck!].deck.count - 1
+                                    }
+                                    if (cardIndex >= deck.deck.count - 1) {
+                                        cardIndex = 0
+                                    }
+                                }
+                                
+                                
+                            } label: {
+                                ZStack {
+                                    Image("delete-icon-lrg")
+                                        .resizable()
+                                        .foregroundColor(.white)
+                                        .frame(width: geo.size.width / 4, height: geo.size.width / 4)
+                                }
                             }
-                            showAnswer = false
-                            print("\(cardIndex), \(deck.deck[cardIndex].index)")
-                            
-                        } label: {
-                            Image("next-button-lrg")
-                                .resizable()
-                                .frame(width: geo.size.width / 10, height: geo.size.width / 10)
                         }
                     }
-                    
                 }
-                if editCard {
-                    HStack {
+                else {
+                    VStack {
+                        Text("No cards here!  Click the + button to add a card!")
+                            .font(.custom("FFF Forward", size: geo.size.height / 45))
+                            .foregroundColor(.gray)
                         Button {
+                            editCard = true
                             if selectedDeck != nil {
                                 let newCard = Flashcard(id: UUID(), index: cardIndex, question: "Question", answer: "Answer")
                                 DM.allCurrDecks.allDecks[selectedDeck!].addCard(card: newCard)
@@ -144,30 +190,9 @@ struct CardView: View {
                                     .frame(width: geo.size.width / 4, height: geo.size.width / 4)
                             }
                         }
-                        if (deck.deck.count > 1) {
-                            Button {
-                                if selectedDeck != nil {
-                                    DM.allCurrDecks.allDecks[selectedDeck!].removeCard(card: DM.allCurrDecks.allDecks[selectedDeck!].deck[cardIndex])
-                                    if (cardIndex < 0) {
-                                        cardIndex = DM.allCurrDecks.allDecks[selectedDeck!].deck.count - 1
-                                    }
-                                    if (cardIndex >= deck.deck.count - 1) {
-                                        cardIndex = 0
-                                    }
-                                }
-                                print("\(cardIndex), \(deck.deck[cardIndex].index)")
-                                
-                                
-                            } label: {
-                                ZStack {
-                                    Image("delete-icon-lrg")
-                                        .resizable()
-                                        .foregroundColor(.white)
-                                        .frame(width: geo.size.width / 4, height: geo.size.width / 4)
-                                }
-                            }
-                        }
                     }
+                    .navigationBarHidden(true)
+                    
                 }
             }
         }

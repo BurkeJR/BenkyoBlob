@@ -18,7 +18,7 @@ class RunningTimeManager: ObservableObject {
     }
     
     func start() {
-        timer = Timer.scheduledTimer(withTimeInterval: 10800, repeats: true) { _ in
+        timer = Timer.scheduledTimer(withTimeInterval: 3600, repeats: true) { _ in
             MainBlobView().VM.pet.decrementHappiness()
         }
     }
