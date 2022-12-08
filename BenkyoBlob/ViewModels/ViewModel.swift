@@ -32,7 +32,7 @@ class ViewModel : ObservableObject {
         var questions = [Question]()
         questions.append(Question(id: 1, question: "Is this a question?", choices: ["Yes", "No"], answer: 0))
         questions.append(Question(id: 2, question: "Is the cake a lie?", choices: ["Yes", "No"], answer: 0))
-        questions.append(Question(id: 3, question: "True or False: This sentence is a lie.", choices: ["True", "False", "OK"], answer: 3))
+        questions.append(Question(id: 3, question: "True or False: This sentence is a lie.", choices: ["True", "False", "OK"], answer: 2))
         
         quizes.append(Quiz(id: 1, name: "Sample Quiz", questions: questions))
         

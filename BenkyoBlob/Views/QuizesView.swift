@@ -37,9 +37,11 @@ struct QuizView: View {
                 Text(question.question)
                     .font(.custom("FFF Forward", size: geo.size.height / 25))
                 
-                ForEach(question.choices, id: \.self) { choice in
+                ForEach(Array(zip(question.choices.indices, question.choices)), id: \.1) { index, choice in
                     Button {
-                        showNextQuestion = true
+                        if question.answer == index {
+                            showNextQuestion = true
+                        }
                     } label: {
                         ZStack {
                             Image("flashcard-lrg")
