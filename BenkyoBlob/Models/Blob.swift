@@ -25,7 +25,15 @@ struct Blob : Decodable {
             return ["slimepet-pink", "ruby", "lily", "nadeshiko"]
         }
     }
-    var mood : String
+    var mood : String {
+        if (happiness < 4) {
+            return "sad"
+        }
+        if (happiness >= 4 && happiness < 7) {
+            return "normal"
+        }
+        return "happy"
+    }
     var level : Int
     var stage : Int {
         if (level >= 5 && level < 14) {
@@ -55,5 +63,26 @@ struct Blob : Decodable {
         if happiness < maxHappiness {
             happiness += 1
         }
+    }
+    
+    mutating func setEXP(gainedEXP: Int) {
+        var exp = gainedEXP + EXP
+        if (gainedEXP > maxEXP) {
+            exp = gainedEXP - maxEXP
+            onLevelUp()
+            setEXP(gainedEXP: exp)
+        }
+        else {
+            EXP = exp
+            if (EXP > maxEXP) {
+                setEXP(gainedEXP: EXP)
+            }
+        }
+    }
+    
+    mutating func onLevelUp() {
+        level += 1
+        maxEXP += (maxEXP / 3)
+        EXP = 0
     }
 }

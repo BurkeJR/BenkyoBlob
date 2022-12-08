@@ -18,7 +18,7 @@ class ViewModel : ObservableObject {
     
     @Published var allNotes = AllNotes(notes: [Note]())
     
-    @Published var pet = Blob(happiness: 0, maxHappiness: 10, EXP: 0, maxEXP: 10, starter: "slimepet-pink", mood: "sad", level: 1)
+    @Published var pet = Blob(happiness: 0, maxHappiness: 10, EXP: 0, maxEXP: 10, starter: "slimepet-pink", level: 1)
     
     
     
@@ -46,5 +46,7 @@ class ViewModel : ObservableObject {
         
         allNotes.notes.append(Note(id: 0, content: "If you're reading this note, you just lost the game."))
     }
+    
+    
     
 }

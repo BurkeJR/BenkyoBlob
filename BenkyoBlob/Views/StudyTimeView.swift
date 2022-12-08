@@ -38,6 +38,8 @@ struct StudyTimeView: View {
     @ObservedObject var TM = TimeManager()
     @State var editNotes : Bool = false
     @Binding var modeSelect : Int?
+    @State var outsideStudyHours : Int = 0
+    @State var unnamedNoteNumber = 0
     @EnvironmentObject var VM : ViewModel
     var formattedString : String {
         let total_seconds = TM.tenMilliseconds / 100
@@ -113,6 +115,12 @@ struct StudyTimeView: View {
                 
                 HStack {
                     Button {
+                        VM.pet.setEXP(gainedEXP: (((TM.tenMilliseconds / 100) / (60 * 60)) * 20) + outsideStudyHours * 20)
+                        for _ in (0..<((TM.tenMilliseconds / 100) / (60 * 60) + outsideStudyHours) * 2) {
+                            if (VM.pet.happiness < VM.pet.maxHappiness) {
+                                VM.pet.happiness += 1
+                            }
+                        }
                         modeSelect = nil
                     } label: {
                         Image("done-lrg")
@@ -120,7 +128,8 @@ struct StudyTimeView: View {
                             .frame(width: geo.size.width / 10, height: geo.size.width / 10)
                     }
                     Button {
-                        VM.allNotes.notes.append(Note(id: VM.allNotes.notes.count, content:"Note \(VM.allNotes.notes.count)"))
+                        VM.allNotes.notes.append(Note(id: VM.allNotes.notes.count, content:"Note \(unnamedNoteNumber)"))
+                        unnamedNoteNumber += 1
                     } label: {
                         ZStack {
                             Image("note-lrg")
@@ -135,6 +144,34 @@ struct StudyTimeView: View {
                     }
                     
                 }
+                
+                Text("Extra Hours Studied:")
+                    .font(.custom("FFF Forward", size: 20))
+                HStack {
+                    Button {
+                        outsideStudyHours -= 1
+                    } label: {
+                        Image("delete-icon-lrg")
+                            .resizable()
+                            .frame(width: geo.size.width / 10, height: geo.size.width / 10)
+                    }
+                    Text("\(outsideStudyHours)")
+                        .font(.custom("FFF Forward", size: 20))
+                    Button {
+                        outsideStudyHours += 1
+                    } label: {
+                        Image("add-icon-lrg")
+                            .resizable()
+                            .frame(width: geo.size.width / 10, height: geo.size.width / 10)
+                        
+                    }
+                    
+                }
+                
+                Text("EXP: \((((TM.tenMilliseconds / 100) / (60 * 60)) * 20) + outsideStudyHours * 20)")
+                    .font(.custom("FFF Forward", size: 20))
+                
+                
                 
                 ScrollView {
                     VStack {

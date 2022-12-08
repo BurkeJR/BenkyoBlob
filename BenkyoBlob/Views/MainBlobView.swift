@@ -6,6 +6,28 @@
 //
 
 import SwiftUI
+import UIKit
+
+class RunningTimeManager: ObservableObject {
+    var timer = Timer()
+    
+    @Published var status : mode = .stopped
+    
+    init() {
+        start()
+    }
+    
+    func start() {
+        timer = Timer.scheduledTimer(withTimeInterval: 10800, repeats: true) { _ in
+            MainBlobView().VM.pet.decrementHappiness()
+        }
+    }
+    
+    func stop() {
+        timer.invalidate()
+    }
+    
+}
 
 struct MainBlobView: View {
     @EnvironmentObject var DM : ViewModel
@@ -196,7 +218,7 @@ struct MainBlobView: View {
                                             .resizable()
                                             .frame(width: geo.size.width / 7, height: geo.size.width / 7)
                                     }
-                                    if (Double(VM.pet.happiness) / Double(VM.pet.maxHappiness) >= 09) {
+                                    if (Double(VM.pet.happiness) / Double(VM.pet.maxHappiness) >= 0.9) {
                                         if (Double(VM.pet.happiness) / Double(VM.pet.maxHappiness) >= 1) {
                                             Image("health-lrg")
                                                 .resizable()

@@ -298,9 +298,10 @@ struct FieldView: View {
     @Binding var name : String
     
     var body : some View {
-        TextField("Deck Name", text: $name)
+        TextField("Enter here", text: $name)
             .font(.custom("FFF Forward", size: 15))
             .border(.black)
+        
     }
     
 }
