@@ -72,14 +72,17 @@ struct collectionTableView : View {
                                         NavigationLink {
                                             let url_add = URL(string: item.urlInfo)
                                             MyWebView(request: URLRequest(url: url_add!))
+                                                .navigationBarHidden(true)
                                         } label: {
                                             Text(item.clickPrompt)
                                                 .font(.custom("FFF Forward", size: geo.size.width / 25))
                                         }
+                                        .navigationBarHidden(true)
                                     }
                                 }
+                                //.navigationBarHidden(true)
                             }
-                            .navigationBarHidden(true)
+                            
                         } label: {
                             HStack {
                                 Image(item.sprite)
@@ -94,10 +97,14 @@ struct collectionTableView : View {
                             .offset(x: -geo.size.width / 6)
                             
                         }
+                        
+                        
                     }
                     
                 }
             }
+            
+            
         }
         
     }
@@ -130,86 +137,8 @@ struct UnlockablesView: View {
                     ScrollView {
                         collectionTableView()
                             .environmentObject(VM)
-                        //                        HStack {
-                        //
-                        //                            VStack {
-                        //                                ForEach(VM.allUnlockables.treasure) { item in
-                        //                                    VStack {
-                        
-                        //                                    }
-                        //
-                        //                                }
-                        //                                Spacer()
-                        //
-                        //                            }
-                        //                            VStack {
-                        //                                ForEach(VM.allUnlockables.treasure) { item in
-                        //                                    VStack {
-                        //                                        if (item.id % 4 == 1) {
-                        //                                            ZStack {
-                        //                                                Image("collectibles-box-lrg")
-                        //                                                    .resizable()
-                        //                                                    .frame(width: 50, height: 50)
-                        //                                                    .padding()
-                        //                                                if (item.isUnlocked) {
-                        //                                                    Image(item.sprite)
-                        //                                                        .resizable()
-                        //                                                        .frame(width: 30, height: 30)
-                        //                                                }
-                        //                                            }
-                        //                                        }
-                        //                                    }
-                        //
-                        //                                }
-                        //                                Spacer()
-                        //                            }
-                        //                            VStack {
-                        //                                ForEach(VM.allUnlockables.treasure) { item in
-                        //                                    VStack {
-                        //                                        if (item.id % 4 == 2) {
-                        //                                            ZStack {
-                        //                                                Image("collectibles-box-lrg")
-                        //                                                    .resizable()
-                        //                                                    .frame(width: 50, height: 50)
-                        //                                                    .padding()
-                        //                                                if (item.isUnlocked) {
-                        //                                                    Image(item.sprite)
-                        //                                                        .resizable()
-                        //                                                        .frame(width: 30, height: 30)
-                        //                                                }
-                        //                                            }
-                        //                                        }
-                        //                                    }
-                        //
-                        //                                }
-                        //                                Spacer()
-                        //                            }
-                        //                            VStack {
-                        //                                ForEach(VM.allUnlockables.treasure) { item in
-                        //                                    VStack {
-                        //                                        if (item.id % 4 == 3) {
-                        //                                            ZStack {
-                        //                                                Image("collectibles-box-lrg")
-                        //                                                    .resizable()
-                        //                                                    .frame(width: 50, height: 50)
-                        //                                                    .padding()
-                        //                                                if (item.isUnlocked) {
-                        //                                                    Image(item.sprite)
-                        //                                                        .resizable()
-                        //                                                        .frame(width: 30, height: 30)
-                        //                                                }
-                        //                                            }
-                        //                                        }
-                        //                                    }
-                        //
-                        //                                }
-                        //                                Spacer()
-                        //                            }
-                        //
-                        //                        }
                     }
                 }
-                //.navigationBarHidden(true)
                 
             }
         }

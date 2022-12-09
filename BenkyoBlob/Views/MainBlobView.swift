@@ -81,6 +81,7 @@ struct MainBlobView: View {
                                 ToolbarItem(placement: .primaryAction) {
                                     NavigationLink(tag: 3, selection: $modeSelect) {
                                         UnlockablesView(modeSelect: $modeSelect)
+                                            .navigationBarHidden(true)
                                     } label: {
                                         Image("ui-05-unlockables-light-with-colored-shadow-lrg")
                                             .resizable()
